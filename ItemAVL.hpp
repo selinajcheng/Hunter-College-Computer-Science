@@ -173,7 +173,7 @@ private:
      * @param k3 The parent Node with a left-right imbalance
      * @post Updates heights, sets new root
      */
-    void doubleWithLeftChild(Node*& k3);
+    void doubleWithLeftChlid(Node*& k3);
 
     /**
      * @brief Performs a double rotation to fix a right-left imbalance about k3

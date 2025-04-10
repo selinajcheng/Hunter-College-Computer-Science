@@ -2,17 +2,17 @@
 
 bool CompareItemName::lessThan(const Item& a, const Item& b)
 {
-    return a.name_ < b.name_;
+    // return a.name_ < b.name_;
 }
 
 bool CompareItemName::equal(const Item& a, const Item& b)
 {
-    return a.name_ == b.name_;
+    // return a.name_ == b.name_;
 }
 
 bool CompareItemName::leq(const Item& a, const Item& b)
 {
-    return CompareItemName::lessThan(a, b) || CompareItemName::equal(a, b);
+    // return CompareItemName::lessThan(a, b) || CompareItemName::equal(a, b);
 }
 
 bool CompareItemWeight::lessThan(const Item& a, const Item& b)
