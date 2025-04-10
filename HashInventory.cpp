@@ -95,8 +95,7 @@ bool Inventory<Comparator, std::unordered_set<Item>>::pickup(const Item& target)
     auto result = items_.insert(target);
     if (result.second)
     {
-        weight_ += target.getWeight();
-        return true;
+        weight_ += target.weight_;
     }
     return false;
 }
@@ -117,7 +116,7 @@ bool Inventory<Comparator, std::unordered_set<Item>>::discard(
     auto it = items_.find(temp);
     if (it != items_.end())
     {
-        weight_ -= it->getWeight();
+        weight_ -= it->weight_;
         items_.erase(it);
         return true;
     }

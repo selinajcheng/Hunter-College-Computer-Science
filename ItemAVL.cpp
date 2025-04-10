@@ -281,7 +281,7 @@ void ItemAVL<Comparator>::balance(Node*& t)
         if (height(t->left_->left_) >= height(t->left_->right_)) {
             rotateWithLeftChild(t);
         } else {
-            doubleWithLeftChlid(t);
+            doubleWithLeftChild(t);
         }
     } else {
         if (height(t->right_) - height(t->left_) > ALLOWED_IMBALANCE) {
@@ -340,7 +340,7 @@ void ItemAVL<Comparator>::rotateWithRightChild(Node*& k1)
  * @post Updates heights, sets new root
  */
 template <class Comparator>
-void ItemAVL<Comparator>::doubleWithLeftChlid(Node*& k3)
+void ItemAVL<Comparator>::doubleWithLeftChild(Node*& k3)
 {
     rotateWithRightChild(k3->left_);
     rotateWithLeftChild(k3);
@@ -358,3 +358,7 @@ void ItemAVL<Comparator>::doubleWithRightChild(Node*& k3)
     rotateWithLeftChild(k3->right_);
     rotateWithRightChild(k3);
 }
+
+template class ItemAVL<CompareItemName>;
+template class ItemAVL<CompareItemWeight>;
+template class ItemAVL<CompareItemType>;

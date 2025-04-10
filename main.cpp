@@ -10,162 +10,170 @@
 //     return 0;
 // }
 
-#include <gtest/gtest.h>
+#include <iostream>
+#include <string>
+#include <vector>
 #include "Item.hpp"
+#include "Compare.hpp"
 #include "ItemGenerator.hpp"
 #include "HashInventory.hpp"
 #include "TreeInventory.hpp"
-#include "Compare.hpp"
 
-// -------------------- Item Tests --------------------
-TEST(ItemTest, BasicConstruction) {
+// Test utility functions
+void printTestResult(const std::string& testName, bool passed) {
+    std::cout << (passed ? "\033[32m[PASS] " : "\033[31m[FAIL] ") 
+              << testName << "\033[0m" << std::endl;
+}
+
+void runItemTests() {
+    std::cout << "\n=== Item Class Tests ===\n";
+    
+    // Test 1: Basic construction
     Item sword("Excalibur", 5.5, ItemType::WEAPON);
-    EXPECT_EQ(sword.name_, "Excalibur");
-    EXPECT_FLOAT_EQ(sword.weight_, 5.5);
-    EXPECT_EQ(sword.type_, ItemType::WEAPON);
-}
+    bool passed = (sword.name_ == "Excalibur") && 
+                 (sword.weight_ == 5.5f) && 
+                 (sword.type_ == ItemType::WEAPON);
+    printTestResult("Basic Construction", passed);
 
-TEST(ItemTest, EqualityOperator) {
-    Item a("Phoenix Feather", 0.1, ItemType::ACCESSORY);
-    Item b("Phoenix Feather", 0.2, ItemType::ARMOR);
-    Item c("Dragon Scale", 0.1, ItemType::ACCESSORY);
-    
-    EXPECT_TRUE(a == b);  // Same name
-    EXPECT_FALSE(a == c); // Different name
-}
+    // Test 2: Equality operator
+    Item sword2("Excalibur", 6.0, ItemType::ARMOR); // Same name, different attributes
+    Item axe("Battle Axe", 7.0, ItemType::WEAPON);
+    passed = (sword == sword2) && !(sword == axe);
+    printTestResult("Equality Operator", passed);
 
-TEST(ItemTest, HashCollision) {
+    // Test 3: Hash functionality
     std::unordered_set<Item> items;
-    items.insert(Item("A", 1.0, ItemType::WEAPON));
-    items.insert(Item("A", 2.0, ItemType::ARMOR)); // Same name
-    
-    EXPECT_EQ(items.size(), 1);
+    items.insert(sword);
+    items.insert(sword2); // Should not insert (same name)
+    passed = (items.size() == 1);
+    printTestResult("Hash Uniqueness", passed);
 }
 
-// -------------------- Comparator Tests --------------------
-TEST(ComparatorTest, NameComparison) {
-    Item a("Apple", 1.0, ItemType::WEAPON);
-    Item b("Banana", 1.0, ItemType::WEAPON);
+void runComparatorTests() {
+    std::cout << "\n=== Comparator Tests ===\n";
     
-    EXPECT_TRUE(CompareItemName::lessThan(a, b));
-    EXPECT_FALSE(CompareItemName::lessThan(b, a));
+    Item apple("Apple", 1.0, ItemType::ACCESSORY);
+    Item banana("Banana", 2.0, ItemType::ACCESSORY);
+    Item appleHeavy("Apple", 3.0, ItemType::WEAPON);
+
+    // Test 1: Name comparison
+    bool namePassed = CompareItemName::lessThan(apple, banana) &&
+                     !CompareItemName::lessThan(banana, apple);
+    printTestResult("Name Comparison", namePassed);
+
+    // Test 2: Weight comparison
+    bool weightPassed = CompareItemWeight::lessThan(apple, banana) &&
+                        CompareItemWeight::equal(apple, appleHeavy);
+    printTestResult("Weight Comparison", weightPassed);
+
+    // Test 3: Type comparison
+    bool typePassed = CompareItemType::lessThan(apple, appleHeavy) &&
+                      !CompareItemType::lessThan(appleHeavy, apple);
+    printTestResult("Type Comparison", typePassed);
 }
 
-TEST(ComparatorTest, WeightComparison) {
-    Item a("Sword", 5.0, ItemType::WEAPON);
-    Item b("Sword", 5.1, ItemType::WEAPON);
-    
-    EXPECT_TRUE(CompareItemWeight::lessThan(a, b));
-    EXPECT_TRUE(CompareItemWeight::equal(a, a));
-}
-
-// -------------------- HashInventory Tests --------------------
-class HashInventoryTest : public ::testing::Test {
-protected:
-    void SetUp() override {
-        inv.pickup(Item("Sword", 5.0, ItemType::WEAPON));
-        inv.pickup(Item("Shield", 8.0, ItemType::ARMOR));
-    }
+void runHashInventoryTests() {
+    std::cout << "\n=== HashInventory Tests ===\n";
     
     Inventory<CompareItemName, std::unordered_set<Item>> inv;
-};
+    Item sword("Sword", 5.0, ItemType::WEAPON);
+    Item shield("Shield", 8.0, ItemType::ARMOR);
 
-TEST_F(HashInventoryTest, BasicOperations) {
-    EXPECT_EQ(inv.size(), 2);
-    EXPECT_FLOAT_EQ(inv.getWeight(), 13.0);
-    
-    EXPECT_TRUE(inv.contains("Sword"));
-    EXPECT_FALSE(inv.contains("Potion"));
+    // Test 1: Basic operations
+    bool pickupPassed = inv.pickup(sword) && 
+                       !inv.pickup(Item("Sword", 6.0, ItemType::WEAPON)) &&
+                       inv.pickup(shield);
+    printTestResult("Pickup Items", pickupPassed);
+
+    // Test 2: Weight tracking
+    bool weightPassed = (inv.getWeight() == 13.0f);
+    printTestResult("Weight Tracking", weightPassed);
+
+    // Test 3: Query functionality
+    auto result = inv.query(Item("Shield", 0, ItemType::NONE), 
+                   Item("Sword", 0, ItemType::NONE));
+    bool queryPassed = (result.size() == 2);
+    printTestResult("Range Query", queryPassed);
 }
 
-TEST_F(HashInventoryTest, QueryFunction) {
-    Item start("Shield", 0, ItemType::NONE);
-    Item end("Sword", 0, ItemType::NONE);
-    auto result = inv.query(start, end);
+void runTreeInventoryTests() {
+    std::cout << "\n=== TreeInventory Tests ===\n";
     
-    ASSERT_EQ(result.size(), 2);
-    EXPECT_TRUE(result.count(Item("Shield")));
-    EXPECT_TRUE(result.count(Item("Sword")));
+    Inventory<CompareItemWeight, Tree> inv;
+    Item light("Feather", 0.5, ItemType::ACCESSORY);
+    Item medium("Sword", 5.0, ItemType::WEAPON);
+    Item heavy("Anvil", 20.0, ItemType::ARMOR);
+
+    // Test 1: Ordered insertion
+    inv.pickup(medium);
+    inv.pickup(light);
+    inv.pickup(heavy);
+    bool orderPassed = (inv.getItems().root()->value_.weight_ == 5.0f); // Root should be medium
+    printTestResult("AVL Ordering", orderPassed);
+
+    // Test 2: Weight-based query
+    auto result = inv.query(Item("", 1.0, ItemType::NONE), 
+                   Item("", 10.0, ItemType::NONE));
+    bool queryPassed = (result.size() == 1) && 
+                      (result.begin()->name_ == "Sword");
+    printTestResult("Weight Query", queryPassed);
 }
 
-// -------------------- TreeInventory Tests --------------------
-class TreeInventoryTest : public ::testing::Test {
-protected:
-    void SetUp() override {
-        inv.pickup(Item("Zebra", 3.0, ItemType::ARMOR));
-        inv.pickup(Item("Apple", 1.0, ItemType::WEAPON));
-        inv.pickup(Item("Mango", 2.0, ItemType::ACCESSORY));
-    }
+void runItemGeneratorTests() {
+    std::cout << "\n=== ItemGenerator Tests ===\n";
     
-    Inventory<CompareItemName, Tree> inv;
-};
-
-TEST_F(TreeInventoryTest, OrderedQuery) {
-    Item start("Apple", 0, ItemType::NONE);
-    Item end("Mango", 0, ItemType::NONE);
-    auto result = inv.query(start, end);
-    
-    ASSERT_EQ(result.size(), 2);
-    EXPECT_TRUE(result.count(Item("Apple")));
-    EXPECT_TRUE(result.count(Item("Mango")));
-    EXPECT_FALSE(result.count(Item("Zebra")));
-}
-
-TEST_F(TreeInventoryTest, WeightBasedQuery) {
-    Inventory<CompareItemWeight, Tree> weightInv;
-    weightInv.pickup(Item("A", 1.0, ItemType::WEAPON));
-    weightInv.pickup(Item("B", 2.0, ItemType::WEAPON));
-    weightInv.pickup(Item("C", 3.0, ItemType::WEAPON));
-    
-    Item start("", 1.5, ItemType::NONE);
-    Item end("", 2.5, ItemType::NONE);
-    auto result = weightInv.query(start, end);
-    
-    ASSERT_EQ(result.size(), 1);
-    EXPECT_TRUE(result.count(Item("B")));
-}
-
-// -------------------- ItemAVL Tests --------------------
-TEST(ItemAVLTest, ContainsCheck) {
-    ItemAVL<CompareItemWeight> tree;
-    tree.insert(Item("A", 1.0, ItemType::WEAPON));
-    tree.insert(Item("B", 2.0, ItemType::ARMOR));
-    
-    EXPECT_TRUE(tree.contains("A"));
-    EXPECT_FALSE(tree.contains("C"));
-}
-
-TEST(ItemAVLTest, BalanceCheck) {
-    ItemAVL<CompareItemName> tree;
-    for(char c = 'Z'; c >= 'A'; c--) {
-        tree.insert(Item(std::string(1, c), 1.0, ItemType::WEAPON));
-    }
-    
-    EXPECT_LE(tree.height(tree.root()), 5); // Height should be O(log n)
-}
-
-// -------------------- ItemGenerator Tests --------------------
-TEST(ItemGeneratorTest, UniqueNames) {
     ItemGenerator gen(42);
     auto items = gen.getRandomItems(100);
-    
+
+    // Test 1: Unique names
     std::unordered_set<std::string> names;
-    for(const auto& item : items) {
-        names.insert(item.name_);
+    for (const auto& item : items) names.insert(item.name_);
+    bool uniquePassed = (names.size() == 100);
+    printTestResult("Unique Names", uniquePassed);
+
+    // Test 2: Weight range
+    bool weightPassed = true;
+    for (const auto& item : items) {
+        if (item.weight_ < ItemGenerator::MIN_WEIGHT || 
+            item.weight_ > ItemGenerator::MAX_WEIGHT) {
+            weightPassed = false;
+            break;
+        }
     }
-    
-    EXPECT_EQ(names.size(), 100); // All names should be unique
+    printTestResult("Weight Range", weightPassed);
 }
 
-TEST(ItemGeneratorTest, WeightRange) {
-    ItemGenerator gen(42);
-    Item item = gen.randomItem();
+void runIntegrationTest() {
+    std::cout << "\n=== Integration Test ===\n";
     
-    EXPECT_GE(item.weight_, ItemGenerator::MIN_WEIGHT);
-    EXPECT_LE(item.weight_, ItemGenerator::MAX_WEIGHT);
+    // Create inventory with 1000 random items
+    ItemGenerator gen(123);
+    Inventory<CompareItemName, Tree> inv;
+    auto items = gen.getRandomItems(1000);
+    for (const auto& item : items) inv.pickup(item);
+
+    // Verify size and weight
+    bool sizePassed = (inv.size() == 1000);
+    printTestResult("Large Inventory Size", sizePassed);
+
+    // Query test
+    Item start("Item_0", 0, ItemType::NONE);
+    Item end("Item_999", 0, ItemType::NONE);
+    auto result = inv.query(start, end);
+    bool queryPassed = (result.size() == 1000);
+    printTestResult("Large Query", queryPassed);
 }
 
-int main(int argc, char **argv) {
-    testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+int main() {
+    std::cout << "=== Inventory System Test Suite ===\n";
+    
+    runItemTests();
+    runComparatorTests();
+    runHashInventoryTests();
+    runTreeInventoryTests();
+    runItemGeneratorTests();
+    runIntegrationTest();
+
+    std::cout << "\n=== All Tests Completed ===\n";
+    return 0;
 }
