@@ -10,7 +10,7 @@
  */
 template <class Comparator>
 Inventory<Comparator, std::unordered_set<Item>>::Inventory()
-    : equipped_(nullptr), weight_(0.0) {}
+    : items_(std::unordered_set<Item>{}), equipped_(nullptr), weight_(0.0) {}
 
 /**
  * @brief Retrieves the value stored in `equipped_`
@@ -96,6 +96,7 @@ bool Inventory<Comparator, std::unordered_set<Item>>::pickup(const Item& target)
     if (result.second)
     {
         weight_ += target.weight_;
+        return true;
     }
     return false;
 }
@@ -182,6 +183,7 @@ Inventory<Comparator, std::unordered_set<Item>>::~Inventory()
     discardEquipped();
 }
 
+// Explicit template instantiation
 template class Inventory<CompareItemName, std::unordered_set<Item>>;
 template class Inventory<CompareItemWeight, std::unordered_set<Item>>;
 template class Inventory<CompareItemType, std::unordered_set<Item>>;

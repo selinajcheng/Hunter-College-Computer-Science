@@ -1,16 +1,12 @@
 #pragma once
 
-#include "Compare.hpp"
-#include "Item.hpp"
-#include <algorithm>
-#include <type_traits>
+#include "Inventory.hpp"
 #include <unordered_set>
-#include <vector>
 
-template <class Comparator, class Container = std::vector<Item>>
-class Inventory {
+template <class Comparator>
+class Inventory<Comparator, std::unordered_set<Item>> {
 private:
-    Container items_;
+    std::unordered_set<Item> items_;
 
 protected:
     // A pointer to a dynamically allocated Item outside of the Player's bag
@@ -27,7 +23,6 @@ public:
      * and zero total weight.
      *
      * @tparam Comparator The comparison class for querying items
-     * @tparam Container The container type used to store inventory items
      */
     Inventory();
 
@@ -69,7 +64,7 @@ public:
      *
      * @return Container of items in the inventory
      */
-    Container getItems() const;
+    std::unordered_set<Item> getItems() const;
 
     /**
      * @brief Attempts to add a new item to the inventory.
@@ -77,6 +72,7 @@ public:
      * @param target Item to be added to the inventory
      * @return true if the item was successfully added, false if an item
      *         with the same name already exists
+     * @post Updates the weight_ member to reflect the new Item pickup
      */
     bool pickup(const Item& target);
 
@@ -86,6 +82,7 @@ public:
      * @param name Name of the item to be removed
      * @return true if the item was successfully removed, false if the
      *         item was not found in the inventory
+     * @post Updates the weight_ member to reflect removing the Item
      */
     bool discard(const std::string& itemName);
 
@@ -123,4 +120,4 @@ public:
     ~Inventory();
 };
 
-#include "Inventory.cpp"
+// #include "HashInventory.cpp"

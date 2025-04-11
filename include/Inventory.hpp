@@ -1,18 +1,16 @@
 #pragma once
 
 #include "Compare.hpp"
-#include "Inventory.hpp"
-#include "ItemAVL.hpp"
+#include "Item.hpp"
+#include <algorithm>
+#include <type_traits>
+#include <unordered_set>
+#include <vector>
 
-// Used for aliasing the template
-struct Tree { };
-
-template <class Comparator>
-class Inventory<Comparator, Tree> {
+template <class Comparator, class Container = std::vector<Item>>
+class Inventory {
 private:
-    ItemAVL<Comparator> items_;
-
-    void queryHelper(const Item& start, const Item& end, const Node* root, std::unordered_set<Item>& result) const;
+    Container items_;
 
 protected:
     // A pointer to a dynamically allocated Item outside of the Player's bag
@@ -29,6 +27,7 @@ public:
      * and zero total weight.
      *
      * @tparam Comparator The comparison class for querying items
+     * @tparam Container The container type used to store inventory items
      */
     Inventory();
 
@@ -60,15 +59,17 @@ public:
     float getWeight() const;
 
     /**
-     * @brief Retrieves the count of Items in the items_ ItemAVL
+     * @brief Retrieves the value stored in `item_count_`
+     * @return The size_t value stored in `item_count_`
      */
     size_t size() const;
 
     /**
      * @brief Retrieves a copy of the container holding inventory items.
-     * @return An ItemAVL with the correct Comparison class in the inventory
+     *
+     * @return Container of items in the inventory
      */
-    ItemAVL<Comparator> getItems() const;
+    Container getItems() const;
 
     /**
      * @brief Attempts to add a new item to the inventory.
@@ -76,7 +77,6 @@ public:
      * @param target Item to be added to the inventory
      * @return true if the item was successfully added, false if an item
      *         with the same name already exists
-     * @post Updates the weight_ member to reflect the new Item pickup
      */
     bool pickup(const Item& target);
 
@@ -86,7 +86,6 @@ public:
      * @param name Name of the item to be removed
      * @return true if the item was successfully removed, false if the
      *         item was not found in the inventory
-     * @post Updates the weight_ member to reflect removing the Item
      */
     bool discard(const std::string& itemName);
 
@@ -124,4 +123,4 @@ public:
     ~Inventory();
 };
 
-#include "TreeInventory.cpp"
+// #include "Inventory.cpp"

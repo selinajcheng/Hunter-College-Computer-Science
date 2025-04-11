@@ -1,12 +1,18 @@
 #pragma once
 
+#include "Compare.hpp"
 #include "Inventory.hpp"
-#include <unordered_set>
+#include "ItemAVL.hpp"
+
+// Used for aliasing the template
+struct Tree { };
 
 template <class Comparator>
-class Inventory<Comparator, std::unordered_set<Item>> {
+class Inventory<Comparator, Tree> {
 private:
-    std::unordered_set<Item> items_;
+    ItemAVL<Comparator> items_;
+
+    void queryHelper(const Item& start, const Item& end, const Node* root, std::unordered_set<Item>& result) const;
 
 protected:
     // A pointer to a dynamically allocated Item outside of the Player's bag
@@ -54,17 +60,15 @@ public:
     float getWeight() const;
 
     /**
-     * @brief Retrieves the value stored in `item_count_`
-     * @return The size_t value stored in `item_count_`
+     * @brief Retrieves the count of Items in the items_ ItemAVL
      */
     size_t size() const;
 
     /**
      * @brief Retrieves a copy of the container holding inventory items.
-     *
-     * @return Container of items in the inventory
+     * @return An ItemAVL with the correct Comparison class in the inventory
      */
-    std::unordered_set<Item> getItems() const;
+    ItemAVL<Comparator> getItems() const;
 
     /**
      * @brief Attempts to add a new item to the inventory.
@@ -120,4 +124,4 @@ public:
     ~Inventory();
 };
 
-#include "HashInventory.cpp"
+// #include "TreeInventory.cpp"

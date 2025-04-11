@@ -1,3 +1,4 @@
+#include <list>
 #include "Inventory.hpp"
 
 /**
@@ -194,3 +195,6 @@ Inventory<Comparator, Container>::~Inventory()
 {
     discardEquipped();
 }
+
+template class Inventory<CompareItemName, std::vector<Item>>;
+template class Inventory<CompareItemName, std::list<Item>>;

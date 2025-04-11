@@ -185,6 +185,7 @@ void Inventory<Comparator, Tree>::queryHelper(const Item& start, const Item& end
 template <class Comparator>
 Inventory<Comparator, Tree>::~Inventory() { discardEquipped(); }
 
-// template class Inventory<CompareItemName, Tree>;
-// template class Inventory<CompareItemWeight, Tree>;
-// template class Inventory<CompareItemType, Tree>;
+// Explicit template instantiation
+template class Inventory<CompareItemName, Tree>;
+template class Inventory<CompareItemWeight, Tree>;
+template class Inventory<CompareItemType, Tree>;

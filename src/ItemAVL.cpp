@@ -142,7 +142,7 @@ ItemAVL<Comparator>::~ItemAVL()
 template <class Comparator>
 bool ItemAVL<Comparator>::contains(const std::string& target) const
 {
-    // return contains(target, root_);
+    return contains(target, root_);
 }
 
 /**
@@ -359,6 +359,7 @@ void ItemAVL<Comparator>::doubleWithRightChild(Node*& k3)
     rotateWithRightChild(k3);
 }
 
-// template class ItemAVL<CompareItemName>;
-// template class ItemAVL<CompareItemWeight>;
-// template class ItemAVL<CompareItemType>;
+// Explicit instantiations for ItemAVL
+template class ItemAVL<CompareItemName>;
+template class ItemAVL<CompareItemWeight>;
+template class ItemAVL<CompareItemType>;
