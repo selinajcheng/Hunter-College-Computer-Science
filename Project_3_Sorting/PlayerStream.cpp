@@ -7,12 +7,14 @@ VectorPlayerStream::VectorPlayerStream(const std::vector<Player>& players)
 
 Player VectorPlayerStream::nextPlayer()
 {
-    // stub
-    return Player();
+    if (index_ >= players_.size()) {
+        throw std::runtime_error("No players left in stream.");
+    }
+
+    return players_[index_++];
 }
 
 size_t VectorPlayerStream::remaining() const
 {
-    // stub
-    return 0;
+    return players_.size() - index_;
 }

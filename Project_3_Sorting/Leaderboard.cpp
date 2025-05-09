@@ -38,7 +38,35 @@ namespace Online
 {
     void replaceMin(PlayerIt first, PlayerIt last, Player& target)
     {
-        // stub
+        if (first == last) return;  // if empty
+
+        Player tmp = std::move(target); // move target to root
+        PlayerIt hole = first;
+        size_t heap_size = last - first;
+
+        // percolate down starts
+        while (true)
+        {
+            size_t child = 2 * (hole - first) + 1;
+
+            // first breakpoint: if at leaf
+            if (child >= heap_size) break;
+
+            PlayerIt child_it = first + child;
+            // increment only if
+            if (child + 1 < last && *(child_it + 1) < *child_it)
+            {
+                child++;
+            }
+
+            // second breakpoint: if heap property's satisfied
+            if (!(*child_it < tmp)) break;
+
+            *hole = std::move(*child_it); // move child to hole
+            hole = child_it;
+        }
+
+        *hole = std::move(tmp);
     }
 
     RankingResult rankIncoming(PlayerStream& stream, const size_t& reporting_interval)
