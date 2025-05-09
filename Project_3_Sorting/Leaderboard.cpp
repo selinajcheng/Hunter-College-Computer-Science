@@ -41,7 +41,7 @@ namespace Online
         // stub
     }
 
-    RankingResult rankIncoming(std::vector<Player>& players)
+    RankingResult rankIncoming(PlayerStream& stream, const size_t& reporting_interval)
     {
         // stub
         return RankingResult();
