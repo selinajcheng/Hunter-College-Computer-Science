@@ -53,15 +53,18 @@ namespace Online
             if (child >= heap_size) break;
 
             PlayerIt child_it = first + child;
+            
             // increment only if
-            if (child + 1 < last && *(child_it + 1) < *child_it)
+            if (child + 1 < heap_size && *(child_it + 1) < *child_it)
             {
                 child++;
+                child_it++;
             }
 
-            // second breakpoint: if heap property's satisfied
+            // second breakpoint: if successfully heapified
             if (!(*child_it < tmp)) break;
 
+            // continue percolating down otherwise
             *hole = std::move(*child_it); // move child to hole
             hole = child_it;
         }
@@ -71,8 +74,50 @@ namespace Online
 
     RankingResult rankIncoming(PlayerStream& stream, const size_t& reporting_interval)
     {
-        // stub
-        return RankingResult();
-    }
+        auto start = std::chrono::high_resolution_clock::now();
+        std::vector<Player> top_players;            // instantiate min-heap
+        std::unordered_map<size_t, size_t> cutoffs; // track cutoffs
+        size_t count = 0;                           // track processed
 
+        // while there are still players to rank
+        while (stream.remaining() > 0)
+        {
+            // get the next player
+            Player player = stream.nextPlayer();
+            count++;
+
+            if (top_players.size() < reporting_interval)
+            {
+                top_players.push_back(player);
+
+                // if heap is full
+                if (top_players.size() == reporting_interval)
+                {
+                    std::make_heap(top_players.begin(), top_players.end(), std::greater<Player>());
+                }
+            }
+
+            else if (player > top_players.front())
+            {
+                replaceMin(top_players.begin(), top_players.end(), player);
+            }
+
+            if (count % reporting_interval == 0)
+            {
+                cutoffs[count] = top_players.front().level_;
+            }
+        }
+
+        if (cutoffs.find(count) == cutoffs.end())
+        {
+            cutoffs[count] = top_players.front().level_;
+        }
+
+        std::sort(top_players.begin(), top_players.end());
+
+        auto end = std::chrono::high_resolution_clock::now();
+        double elapsed = std::chrono::duration<double, std::milli>(end - start).count();
+
+        return RankingResult(top_players, cutoffs, elapsed);
+    }
 }
