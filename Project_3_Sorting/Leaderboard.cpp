@@ -16,3 +16,35 @@ RankingResult::RankingResult(const std::vector<Player>& top, const std::unordere
     , elapsed_ { elapsed }
 {
 }
+
+namespace Offline
+{
+
+    RankingResult quickSelectRank(std::vector<Player>& players)
+    {
+        // stub
+        return RankingResult();
+    }
+
+    RankingResult heapRank(std::vector<Player>& players)
+    {
+        // stub
+        return RankingResult();
+    }
+
+}
+
+namespace Online
+{
+    void replaceMin(PlayerIt first, PlayerIt last, Player& target)
+    {
+        // stub
+    }
+
+    RankingResult rankIncoming(std::vector<Player>& players)
+    {
+        // stub
+        return RankingResult();
+    }
+
+}

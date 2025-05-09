@@ -57,6 +57,8 @@ public:
 class VectorPlayerStream : public PlayerStream {
 private:
     // Your private members here. You're the designer now!
+    std::vector<Player> players_;
+    size_t index_;
 
 public:
     /**
