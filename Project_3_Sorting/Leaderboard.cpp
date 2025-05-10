@@ -19,17 +19,84 @@ RankingResult::RankingResult(const std::vector<Player>& top, const std::unordere
 
 namespace Offline
 {
+    // size_t partition(std::vector<Player>& players, size_t left, size_t right)
+    // {
+    //     // using Hoare's algorithm
+    //     Player pivot = players[left + (right - left) / 2];
+    //     size_t i = left - 1;
+    //     size_t j = right + 1;
+
+    //     while (true)
+    //     {
+    //         do { i++; } while (players[i] < pivot);
+    //         do { j--; } while (players[j] > pivot);
+
+    //         if (i >= j) return j;   // as the new pivot
+
+    //         std::swap(players[i], players[j]);
+    //     }
+    // }
+
+    // void quickSelect(std::vector<Player>& players, size_t left, size_t right, size_t target_position)
+    // {
+    //     if (left < right)
+    //     {
+    //         size_t pivot = partition(players, left, right);
+
+    //         if (pivot - left + 1 < target_position)
+    //         {
+    //             quickSelect(players, pivot + 1, right, target_position - pivot - left + 1);
+    //         }
+    //         else if (pivot - left + 1 > target_position)
+    //         {
+    //             quickSelect(players, left, pivot, target_position);
+    //         }
+    //     }
+    // }
 
     RankingResult quickSelectRank(std::vector<Player>& players)
     {
-        // stub
-        return RankingResult();
+        auto start = std::chrono::high_resolution_clock::now();
+        const size_t top_10_percent = players.size() / 10;
+        if (top_10_percent == 0) return RankingResult();
+
+        std::nth_element(players.begin(), players.begin() + top_10_percent, players.end(), std::greater<Player>());
+        std::sort(players.begin(), players.begin() + top_10_percent);
+
+        auto end = std::chrono::high_resolution_clock::now();
+        double elapsed = std::chrono::duration<double, std::milli>(end - start).count();
+
+        return RankingResult(std::vector<Player>(players.begin(), players.begin() + top_10_percent), {}, elapsed);
     }
 
     RankingResult heapRank(std::vector<Player>& players)
     {
-        // stub
-        return RankingResult();
+        auto start = std::chrono::high_resolution_clock::now();
+
+        const size_t top_10_percent = players.size() / 10;
+        if (top_10_percent == 0) return RankingResult();
+
+        // make min-heap for top 10%
+        std::make_heap(players.begin(), players.begin() + top_10_percent, std::greater<Player>());
+
+        // iterate through remaining players
+        for (size_t i = top_10_percent; i < players.size(); i++)
+        {
+            if (players[i] > players.front())
+            {
+                std::pop_heap(players.begin(), players.begin() + top_10_percent, std::greater<Player>());
+                players[top_10_percent - 1] = players[i];
+                std::push_heap(players.begin(), players.begin() + top_10_percent, std::greater<Player>());
+            }
+        }
+
+        // sort in ascending order
+        std::sort(players.begin(), players.begin() + top_10_percent);
+
+        auto end = std::chrono::high_resolution_clock::now();
+        double elapsed = std::chrono::duration<double, std::milli>(end - start).count();
+
+        return RankingResult(std::vector<Player>(players.begin(), players.begin() + top_10_percent), {}, elapsed);
     }
 
 }

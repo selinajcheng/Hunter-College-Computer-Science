@@ -73,6 +73,10 @@ namespace Offline {
  */
 RankingResult quickSelectRank(std::vector<Player>& players);
 
+// helper functions BELOW
+// size_t partition(std::vector<Player>& players, size_t left, size_t right);
+// void quickSelect(std::vector<Player>& players, size_t left, size_t right, size_t target_position);
+
 /**
  * @brief Uses an early-stopping version of heapsort to
  *        select and sort the top 10% of players in-place
