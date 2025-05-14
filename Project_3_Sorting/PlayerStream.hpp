@@ -8,7 +8,7 @@
 
 // Uncomment the following if you're doing extra credit!
 // Otherwise, feel free to ignore this or erase APIPlayerStream.
-// #define API_ENABLED
+#define API_ENABLED
 
 /**
  * @brief Interface for fetching Player objects sequentially.
@@ -135,7 +135,7 @@ public:
 class APIPlayerStream : public PlayerStream {
 protected:
     const std::string PORT = "5000";
-    const std::string HOSTNAME = 'http://127.0.0.1';
+    const std::string HOSTNAME = "http://127.0.0.1";
     const std::string SOCKET = HOSTNAME + ":" + PORT;
 
 private:
@@ -150,7 +150,8 @@ private:
      * we'll use seeds to pseudo-randomly generate contents.
      * Make sure to include this in your calls.
      */
-    size_t cursor_, seed_;
+    size_t cursor_, seed_, batch_size_, batch_index_, expected_length_;
+    std::vector<Player> local_batch_;
 
     // Your additional private members here
 public:
