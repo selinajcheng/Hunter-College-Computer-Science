@@ -15,10 +15,11 @@ namespace VertexCover {
 
         // read in the file line-by-line
         while (std::getline(fin, line)) {
-            // departure code is always from index 23-26
-            // destination code is always from index 53-56
-            std::string departure = line.substr(23, 3);
-            std::string destination = line.substr(53, 3);
+            // departure code is always from index 21-24
+            // destination code is always from index 51-54
+            std::string departure = line.substr(21, 3);
+            std::string destination = line.substr(51, 3);
+            // std::cout << departure << " " << destination << std::endl;
 
             // insert edge twice in the undirected graph
             g[departure].insert(destination);
@@ -29,7 +30,34 @@ namespace VertexCover {
     }
 
     std::unordered_set<Vertex> cover_graph(Graph g) {
-        // stub
-        return std::unordered_set<Vertex>();
+        std::unordered_set<Vertex> cover;
+
+        // continue until all edges are covered
+        while (!g.empty()) {
+            Vertex current_vertex;
+            size_t max_degree = 0;
+            // find vertex with max degree
+            for (const auto& [vertex, neighbors] : g) {
+                if (neighbors.size() > max_degree) {
+                    max_degree = neighbors.size();
+                    current_vertex = vertex;
+                }
+            }
+
+            // add to cover set
+            cover.insert(current_vertex);
+
+            for (const auto& neighbor : g[current_vertex]) {
+                // remove all edges from current vertex
+                g[neighbor].erase(current_vertex);
+                // remove current vertex if no edges connect it to the graph
+                if (g[neighbor].empty()) {
+                    g.erase(neighbor);
+                }
+            }
+
+            g.erase(current_vertex);
+        }
+        return cover;
     }
 }
