@@ -1,0 +1,106 @@
+% ----------
+% A LaTeX template for course project reports
+% 
+% This template is modified from "Tech Report ala MIT AI Lab (1981)"
+% 
+% ----------
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin = 1in]{geometry} % sets 1-inch margin on all sides
+
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[runin]{abstract}
+\usepackage{titling}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{helvet}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{blindtext}
+\usepackage{parskip}
+\usepackage{etoolbox}
+
+\usepackage{titlesec}
+\usepackage{cite}
+\bibliographystyle{IEEEtran}
+
+\input{preamble.tex}
+
+% ----------
+% Variables
+% ----------
+
+% Set all headings to sans serif font
+\titleformat{\section}{\fontfamily{lmss}\selectfont\Large\bfseries}{}{}{}[]
+\titleformat{\subsection}{\fontfamily{lmss}\selectfont\large\bfseries}{}{}{}[]
+\titleformat{\subsubsection}{\fontfamily{lmss}\selectfont\normalsize\bfseries}{}{}{}[]
+
+% ----------
+% actual document
+% ----------
+%\linespread{1.0}
+\begin{document}
+\pagestyle{empty}
+\singlespacing
+\vspace{1.0cm}
+
+\newgeometry{} % Redefine geometries (normal margins)
+
+% \textbf{CSCI 493.89 Research in AI and ML}: Assignment 6
+
+% full bibliographic reference including title, author, date, venue. 
+\section{Subject}
+\label{sec:subject}
+D. Zhao, J. T. A. Andrews, O. Papakyriakopoulos, and A. Xiang, “Position: measure dataset diversity, don’t just claim it,” in \emph{Proceedings of the 41st International Conference on Machine Learning}, ser. ICML’24. JMLR.org, 2024.
+
+% describe the content, including its three most important points.
+\section{Summary}
+\label{sec:summary}
+This paper is a critique of the machine learning research community's reliance on unsubstantiated claims of dataset diversity and advocates for rigorous, quantifiable measures through the \emph{measurement theory} framework. The paper presents conceptualization and operationalization as methodologies for evaluating diversity through the lenses of reliability and validity. The authors then present a case study applying their framework.
+
+% Identify the author’s underlying thesis in a single sentence.
+\section{Thesis Statement}
+\label{sec:thesis}
+Measurement theory is a scaffolding framework to create diverse datasets, enabling clearer definitions and stronger validation methods.
+
+% Identify the principal results of the research. (If it is a survey paper, indicate instead the major points instead.)
+\section{Principal Results}
+\label{sec:principal}
+After an analysis of 135 datasets, it was found that there is a lack of concrete definitions for diversity and conflation of constructs present in ML research. Additionally, gaps in documentation and an increase in data collection opacity reduce reproducibility and evaluation. An increase in quality control and robust validation of data is also needed.
+
+% \pagebreak
+
+% What parts were the clearest? What parts were the least clear?
+\section{Clarity}
+\label{sec:clarity}
+It was clearly explained what conceptualization and operationalization are. It was least clear where the framework may fall short when implemented.
+
+% How does the paper relate to others you have read? Provide full bibliographic citations. At least say what kind of papers would have been relevant. If you reference one of their references, say something specific about it
+\section{Relevance}
+\label{sec:relevance}
+This paper relates to the Gundersen et al. paper Tahsinul and I read from the 2025 AAAI Conference \cite{gundersen2024unreasonableeffectivenessopenscience}. The Gundersen et al. paper is a replication study that tries to evaluate the reproducibility of AI research. The Zhao et al. paper cites the importance of the measurement theory framework to reproducibility in science.
+
+% Ask at least three thoughtful questions, now that you have read it. These might be thesis topic ideas, or ways the material relates to other work in problem solving or statistics or computer science with which you are familiar.
+\section{Further Study}
+\label{sec:further}
+What are some additional examples where we can apply the measurement theory framework? Are there any drawbacks or limitations to the framework? How might metrics be adapted across cultures?
+
+% Why would you reread this paper, or recommend it to a colleague? This should not be a review.
+\section{Recommendation}
+\label{sec:rec}
+I would recommend this paper to anyone involved or interested in work that makes use of data. This paper also encourages critical thinking and appropriate skepticism.
+
+% What impact the methods, data, and/or results will have on the community beyond computer science.
+\section{Social Impact}
+\label{sec:impact}
+The measurement theory framework was said to exist in the social sciences. As the framework continues to become more prevalent across fields, it will increase the scope of its impact to outside of research, perhaps including hiring and criminal justice.
+
+% This can be notation, methods, language, or ideas
+\section{What I looked up}
+\label{sec:looked up}
+What a position paper is and composition diversity.
+
+\bibliography{references}
+
+\end{document}

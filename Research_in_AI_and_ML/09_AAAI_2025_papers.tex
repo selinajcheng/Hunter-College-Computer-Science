@@ -1,0 +1,80 @@
+% ----------
+% A LaTeX template for course project reports
+% 
+% This template is modified from "Tech Report ala MIT AI Lab (1981)"
+% 
+% ----------
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin = 1in]{geometry} % sets 1-inch margin on all sides
+
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[runin]{abstract}
+\usepackage{titling}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{helvet}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{blindtext}
+\usepackage{parskip}
+\usepackage{etoolbox}
+
+\usepackage{titlesec}
+\usepackage{cite}
+\bibliographystyle{IEEEtran}
+
+\input{preamble.tex}
+
+% ----------
+% Variables
+% ----------
+
+% Set all headings to sans serif font
+\titleformat{\section}{\fontfamily{lmss}\selectfont\Large\bfseries}{}{}{}[]
+\titleformat{\subsection}{\fontfamily{lmss}\selectfont\large\bfseries}{}{}{}[]
+\titleformat{\subsubsection}{\fontfamily{lmss}\selectfont\normalsize\bfseries}{}{}{}[]
+
+% ----------
+% actual document
+% ----------
+%\linespread{1.0}
+\begin{document}
+\pagestyle{empty}
+\singlespacing
+\vspace{1.0cm}
+
+\newgeometry{} % Redefine geometries (normal margins)
+
+% \textbf{CSCI 493.89 Research in AI and ML}: Assignment 6
+
+\section{Paper 1}
+\label{sec:Paper 1}
+W. Gao, Q. Liu, L. Yue, F. Yao, R. Lv, Z. Zhang, H. Wang, and Z. Huang, “Agent4edu: Generating learner response data by generative agents for intelligent education systems,” 2025. [Online]. Available: https://arxiv.org/abs/2501.10332
+
+The paper introduces \emph{Agent4edu}, a framework the authors created, using generative AI-driven agents to simulate learner responses to intelligent education systems. The authors propose a framework that serves as a method to create synthetic but realistic datasets that mimic how students might interact with education platforms. By using generative agents, the framework can model different learning behaviors, preferences, and misconceptions that students may have. The paper emphasizes the potential of this approach in improving the accuracy of AI in education and demonstrates its applicability in scenarios where real-world data is either hard to obtain or few in numbers.
+
+I would like to present this paper because it is regarding a critical issue in the intersection of AI and education: the lack of data to train the systems that may drive personalized learning. I have learned that there is consistently a problem with obtaining high quality data in large amounts. Creating high quality data that effectively represents data from real students sounded like an innovative solution for training intelligent education systems. Without proper training, these systems would never be adopted, but without real data, the required proper training would not be possible, creating a cycle that seemed to have no way out. With synthetic but high quality data that is representative of many samples, that dilemma would be solved and enable the development of more adaptive and effective personalized learning systems. I'm also curious as to how this synthesizing of data can be applied to not just intelligent educational agents, but elsewhere, where scarce data is a problem. (258 words)
+
+\section{Paper 2}
+\label{sec:Paper 2}
+O. E. Gundersen, O. Cappelen, M. Mølnå, and N. G. Nilsen, “The unreasonable effectiveness of open science in ai: A replication study,” 2024. [Online]. Available: https://arxiv.org/abs/2412.17859
+
+This paper is a replication study on the impact of open science practices on AI research, namely in regards to its advancement and reproducibility of results. The authors conducted a study of multiple AI experiments and compare results obtained from open datasets, code, and methods with non-open approaches, i.e., proprietary or less transparent. The findings of this paper emphasize the importance of open science practices. In particular, it suggests that open science practices increase the reliability and collaborative potential of AI research, which overall lead to outcomes that are more robust and generalizable to new data. In addition to discussing their findings, the authors also discuss the challenges to adopting open science and advocate for a shift towards greater openness in the AI research community.
+
+I chose this paper because I wanted to learn more about the value of open source in research, especially in AI research.
+
+I would like to present this paper because it addresses an important issue in not just AI research but research in general: reproducibility. AI systems have the potential to greatly impact many important fields. As they increasingly influence fields like healthcare and government, ensuring that research findings are as reliable and transparent as possible is important. The paper does well in highlighting both sides: the benefits of open science and insights into how the science community can overcome the challenges that come with attempting to adopt an open science policy. I also think that this is a meta examination of AI research, which felt interesting to learn about and pass on to my classmates. (262 words)
+
+\section{Paper 3}
+\label{sec:Paper 3}
+P. Hall, O. Mundahl, and S. Park, “The pitfalls of ”security by obscurity” and what they mean for transparent ai,” 2025. [Online]. Available: https://arxiv.org/abs/2501.18669
+
+The paper is a critique against the practice of "security by obscurity" in AI systems. This practice encompasses the idea that in order to prevent misuse or exploitation, the inner workings of algorithms should be hidden. The authors argue that this approach instead often backfires. Instead of preventing misuse and exploitation, vulnerabilities may be obscured, avoidance of accountability is enabled, and public trust may be eroded as a result. Instead, the authors advocate for transparency, namely, AI systems that prioritize explainability, the ability to be audited, and engagement with stakeholders. To support their critique, the authors provide case studies of failures in AI that resulted from designs that were non-transparent. Following this, the authors also give recommendations for how researchers may build more secure and trustworthy systems through transparency.
+
+I chose this paper because I knew obscuring the inner workings of technology is something done often not just in research, but in business as well. Much of this seemed to come down to competition and fear. I was curious to learn what had been concretely found on this subject and if there was anything actionable.
+
+I would like to present this paper because it addresses an important point of contention in not just AI development, but technology development. The tension exists in the trade-offs between security and transparency. This paper provides a well-supported argument for why transparency should be upheld in AI design and I would like to test my understanding by explaining it well. This paper is also very timely and thought-provoking, so it is worth sharing. (258 words)
+
+\end{document}

@@ -1,0 +1,84 @@
+% ----------
+% A LaTeX template for course project reports
+% 
+% This template is modified from "Tech Report ala MIT AI Lab (1981)"
+% 
+% ----------
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin = 1in]{geometry} % sets 1-inch margin on all sides
+
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[runin]{abstract}
+\usepackage{titling}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{helvet}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{blindtext}
+\usepackage{parskip}
+\usepackage{etoolbox}
+
+\usepackage{titlesec}
+\usepackage{cite}
+\bibliographystyle{IEEEtran}
+
+\input{preamble.tex}
+
+% ----------
+% Variables
+% ----------
+
+% Set all headings to sans serif font
+\titleformat{\section}{\fontfamily{lmss}\selectfont\Large\bfseries}{}{}{}[]
+\titleformat{\subsection}{\fontfamily{lmss}\selectfont\large\bfseries}{}{}{}[]
+\titleformat{\subsubsection}{\fontfamily{lmss}\selectfont\normalsize\bfseries}{}{}{}[]
+
+% ----------
+% actual document
+% ----------
+%\linespread{1.0}
+\begin{document}
+\pagestyle{empty}
+\singlespacing
+\vspace{1.0cm}
+
+\newgeometry{} % Redefine geometries (normal margins)
+
+% \textbf{CSCI 493.89 Research in AI and ML}: Assignment 6
+
+\section{Paper 1}
+\label{sec:Paper 1}
+Y. Bengio, J. Louradour, R. Collobert, and J. Weston, "Curriculum learning," in \emph{Proceedings of the 26th Annual International Conference on Machine Learning}, ser. ICML '09. New York, NY, USA: Association for Computing Machinery, 2009, p. 41–48. [Online]. Available: https://doi.org/10.1145/1553374.1553380
+
+The paper on NELL made multiple mentions of curriculum learning and how prior learning can support and facilitate further related learning. More specifically, how learning is deliberately structured and ordered is mentioned to influence effective learning. I also drew a parallel between this and how humans, especially children, typically and best learn: by starting with the basics. These mentions made me curious about what examples there were to support the possible benefits behind this approach and how this approach aligns with how humans may learn. I was also curious about whether the human ability to build upon knowledge in this way would be just as effective in a never-ending language learning agent.
+
+After reading the Bengio et al. paper on curriculum learning, I have come to better understand how structured learning can have a significant influence on the efficiency and effectiveness of machine learning models. The paper details the process of \emph{how} this concept is done in machine learning. More specifically, the paper went over multiple examples of curriculum learning.
+
+As I had assumed, this approach was in fact inspired by how humans learn, where foundational knowledge is built upon incrementally. What I did not know was that learning in this manner can also improve the quality of the knowledge base.
+
+The paper also made me understand the importance of the approaches to learning a never-ending language learning agent takes to the ability to continuously learn. In comparison to humans, NELL operates mostly on data from the web, which is vast and can be noisy, and therefore may benefit from structuring. (262 words)
+
+\section{Paper 2}
+\label{sec:Paper 2}
+A. Carlson, J. Betteridge, B. Kisiel, B. Settles, E. R. Hruschka, and T. M. Mitchell, "Toward an architecture for never-ending language learning," in \emph{Proceedings of the Twenty-Fourth AAAI Conference}, ser. AAAI'10. AAAI Press, 2010, p. 1306–1313.
+
+I chose to read the Carlson et al. paper because the paper on NELL briefly touched upon and explained the architecture behind how NELL worked. When I read the paper on NELL, I did not entirely understand the mechanisms behind it and felt a paper that focused solely on this would help clarify many of my confusions. Some of these confusions were more technical, but others were related to the rationale behind some of these choices and if there were any alternative lines of thought considered when building an architecture that enabled a never-ending language learning agent.
+
+After reading the Carlson et al. paper, I understood the architecture and design principles behind NELL a lot more. As expected, the paper provided a detailed explanation behind how NELL operates by continuously extracting information from the web to improve its knowledge base, and by doing so, improved its ability to do the same over time. It's an iterative process, much like a feedback loop. Multiple subsystems make up the building of a knowledge base, including multiple learning components that each work differently but contribute to reducing errors within the knowledge base. These components work together to propose candidate facts, which are then integrated into the knowledge base by a knowledge integrator. The knowledge integrator promotes only high-confidence candidates to beliefs, ensuring computational efficiency, as mentioned in the Mitchell et al. paper.
+
+In addition to the role of multiple differing learning components in reducing errors, the iterative process NELL operates with allows it to continually refine its knowledge. After reading this paper, it became clearer why this is. (265 words)
+
+\section{Paper 3}
+\label{sec:Paper 3}
+X. Chen, A. Shrivastava, and A. Gupta, "Neil: Extracting visual knowledge from web data," in \emph{2013 IEEE International Conference on Computer Vision}, 2013, pp. 1409-1416.
+
+After reading the paper on NELL and multiple mentions of the Never-Ending Image Learner (NEIL), I was curious to learn about how similar or different processing and learning from visual data would be from textual data. As humans, we learn from many forms of sensory input, visual being just one of them. And within visual input, the majority of our visual perception is actually made up of images. NELL has a narrower scope of learning from text, which we learn less often from and when we do, it is often contextualized within an image we see, e.g., a store sign in the streets of a city. Or at the very least, at a developmental stage, we are learning and benefiting more from visual cues that are not text-based.
+
+After reading the Chen et al. paper on NEIL, I gained a deeper understanding of how visual knowledge can be extracted and structured in a way similar to textual knowledge extraction in NELL. Just like NELL, NEIL is an agent designed to run continuously, but focuses on extracting visual knowledge from the web. In comparison to NELL, extracting information from visual data faces different challenges, especially noise and visual variation. NEIL can also extract relationships from images, which is analogous to NELL's ability to extract the same from text.
+
+In hindsight, many images are given alternate texts for accessibility, which can provide an additional avenue for analyzing web pages for NELL. We also have the saying that a picture is worth a thousand words, so the challenge is to provide those words or enable non-human agents to interpret these words. (269 words)
+
+\end{document}

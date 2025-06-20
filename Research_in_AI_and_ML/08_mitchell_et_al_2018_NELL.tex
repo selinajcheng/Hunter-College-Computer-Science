@@ -1,0 +1,106 @@
+% ----------
+% A LaTeX template for course project reports
+% 
+% This template is modified from "Tech Report ala MIT AI Lab (1981)"
+% 
+% ----------
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin = 1in]{geometry} % sets 1-inch margin on all sides
+
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[runin]{abstract}
+\usepackage{titling}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{helvet}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{blindtext}
+\usepackage{parskip}
+\usepackage{etoolbox}
+
+\usepackage{titlesec}
+\usepackage{cite}
+\bibliographystyle{IEEEtran}
+
+\input{preamble.tex}
+
+% ----------
+% Variables
+% ----------
+
+% Set all headings to sans serif font
+\titleformat{\section}{\fontfamily{lmss}\selectfont\Large\bfseries}{}{}{}[]
+\titleformat{\subsection}{\fontfamily{lmss}\selectfont\large\bfseries}{}{}{}[]
+\titleformat{\subsubsection}{\fontfamily{lmss}\selectfont\normalsize\bfseries}{}{}{}[]
+
+% ----------
+% actual document
+% ----------
+%\linespread{1.0}
+\begin{document}
+\pagestyle{empty}
+\singlespacing
+\vspace{1.0cm}
+
+\newgeometry{} % Redefine geometries (normal margins)
+
+% \textbf{CSCI 493.89 Research in AI and ML}: Assignment 6
+
+% full bibliographic reference including title, author, date, venue. 
+\section{Subject}
+\label{sec:subject}
+T. Mitchell, W. Cohen, E. Hruschka, P. Talukdar, B. Yang, J. Betteridge, A. Carlson, B. Dalvi, M. Gardner, B. Kisiel, J. Krishnamurthy, N. Lao, K. Mazaitis, T. Mohamed, N. Nakashole, E. Platanios, A. Ritter, M. Samadi, B. Settles, R. Wang, D. Wijaya, A. Gupta, X. Chen, A. Saparov, M. Greaves, and J. Welling, “Never-ending learning,” \emph{Commun. ACM}, vol. 61, no. 5, p. 103–115, Apr. 2018. [Online]. Available: https://doi.org/10.1145/3191513
+
+% describe the content, including its three most important points.
+\section{Summary}
+\label{sec:summary}
+Mitchell et al. discuss their research on a Never-Ending Learning agent (NELL). The concept of NELL is based on how humans learn: continuously. NELL is a computer program designed to extract beliefs from the Web and improve its reading ability.
+
+% Identify the author’s underlying thesis in a single sentence.
+\section{Thesis Statement}
+\label{sec:thesis}
+NELL's successful performance has demonstrated the potential of and multiple design features critical to creating an effective autonomous never-ending learning system.
+
+% Identify the principal results of the research. (If it is a survey paper, indicate instead the major points instead.)
+\section{Principal Results}
+\label{sec:principal}
+NELL extracted 3.81-mn high confidence and 117-m total beliefs, and nearly doubled its reading accuracy over 1064 iterations. Learning new beliefs became increasingly difficult past extraction of the most frequently mentioned instances.
+
+% \pagebreak
+
+% What parts were the clearest? What parts were the least clear?
+\section{Clarity}
+\label{sec:clarity}
+The goal of NELL and its significance were clear, while the math and vector embeddings parts were least clear.
+
+% How does the paper relate to others you have read? Provide full bibliographic citations. At least say what kind of papers would have been relevant. If you reference one of their references, say something specific about it
+\section{Relevance}
+\label{sec:relevance}
+Carlson et al.'s 2010 paper explores the previous version of NELL and its underlying architecture \cite{Architecture}. For further reading and application of NELL, which only deals with text from the Web, NEIL, which learns from images, would be highly relevant \cite{NEIL}.
+
+% Ask at least three thoughtful questions, now that you have read it. These might be thesis topic ideas, or ways the material relates to other work in problem solving or statistics or computer science with which you are familiar.
+\section{Further Study}
+\label{sec:further}
+How can a never-ending learning system develop meta knowledge to evaluate its own performance by? How can NELL learn to represent knowledge more effectively without external interference? How do we engineer plasticity in NELL?
+
+% Why would you reread this paper, or recommend it to a colleague? This should not be a review.
+\section{Recommendation}
+\label{sec:rec}
+I would recommend this to anyone interested in how machines learn because NELL is an attempt at creating a learning system inspired by how humans learn.
+
+% What impact the methods, data, and/or results will have on the community beyond computer science.
+\section{Social Impact}
+\label{sec:impact}
+Beyond computer science, how NELL learns effectively mirrors a large-scale experiment on how humans may learn, contributing to our understanding in human cognition. From the results, our ability for self-reflection and neural plasticity are critical.
+
+% This can be notation, methods, language, or ideas
+\section{What I looked up}
+\label{sec:looked up}
+I looked up probabilistic Horn clauses, PRA learning system, and ontology.
+
+\bibliography{references}
+
+\end{document}

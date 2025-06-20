@@ -1,0 +1,106 @@
+% ----------
+% A LaTeX template for course project reports
+% 
+% This template is modified from "Tech Report ala MIT AI Lab (1981)"
+% 
+% ----------
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin = 1in]{geometry} % sets 1-inch margin on all sides
+
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[runin]{abstract}
+\usepackage{titling}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{helvet}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{blindtext}
+\usepackage{parskip}
+\usepackage{etoolbox}
+
+\usepackage{titlesec}
+\usepackage{cite}
+\bibliographystyle{IEEEtran}
+
+\input{preamble.tex}
+
+% ----------
+% Variables
+% ----------
+
+% Set all headings to sans serif font
+\titleformat{\section}{\fontfamily{lmss}\selectfont\Large\bfseries}{}{}{}[]
+\titleformat{\subsection}{\fontfamily{lmss}\selectfont\large\bfseries}{}{}{}[]
+\titleformat{\subsubsection}{\fontfamily{lmss}\selectfont\normalsize\bfseries}{}{}{}[]
+
+% ----------
+% actual document
+% ----------
+%\linespread{1.0}
+\begin{document}
+\pagestyle{empty}
+\singlespacing
+\vspace{1.0cm}
+
+\newgeometry{} % Redefine geometries (normal margins)
+
+% \textbf{CSCI 493.89 Research in AI and ML}: Assignment 6
+
+% full bibliographic reference including title, author, date, venue. 
+\section{Subject}
+\label{sec:subject}
+J. B. Tenenbaum, C. Kemp, T. L. Griffiths, and N. D. Goodman, "How to Grow a Mind: Statistics, Structure, and Abstraction," \emph{Science}, vol. 331, no. 6022, pp. 1279 1285, 2011. [Online]. Available: https://www.science.org/doi/abs/10.1126/science.1192788
+
+% describe the content, including its three most important points.
+\section{Summary}
+\label{sec:summary}
+Tenenbaum et al. explore the computational aspects underlying human cognition and how humans learn. Statistical inference, structured representation, and abstraction and how they contribute to the mind's ability to generalize from sparse data are discussed. The paper posits that human learning involves creating hierarchical Bayesian models (HBM) of the world.
+
+% Identify the author’s underlying thesis in a single sentence.
+\section{Thesis Statement}
+\label{sec:thesis}
+Human learning involves forming statistical inferences, structured representations, and abstractions to inform probabilistic models of the world.
+
+% Identify the principal results of the research. (If it is a survey paper, indicate instead the major points instead.)
+\section{Principal Results}
+\label{sec:principal}
+Human learning uses Bayesian inference to update understanding. Structured representations capture the complexity of the world and can be dynamic when embedded in a probabilistic framework. Abstraction enables humans to generalize.
+
+% \pagebreak
+
+% What parts were the clearest? What parts were the least clear?
+\section{Clarity}
+\label{sec:clarity}
+The clearest part was the explanation of why figuring out how the mind learns from so little is a challenging question. The parts that were least clear were the technical details behind HBM and how some of the figures were generated.
+
+% How does the paper relate to others you have read? Provide full bibliographic citations. At least say what kind of papers would have been relevant. If you reference one of their references, say something specific about it
+\section{Relevance}
+\label{sec:relevance}
+This paper builds on two of the authors (Tenenbaum and Kemp) previous foundational work in cognitive modeling discussing the merits of the top-down and probabilistic approach of representing cognition \cite{GRIFFITHS2010357}.
+
+% Ask at least three thoughtful questions, now that you have read it. These might be thesis topic ideas, or ways the material relates to other work in problem solving or statistics or computer science with which you are familiar.
+\section{Further Study}
+\label{sec:further}
+What are the limits to Bayesian inference in explaining human cognition? Are there ways to complement this framework using others? Are there limitations to how closely AI can simulate how humans or children learn? 
+
+% Why would you reread this paper, or recommend it to a colleague? This should not be a review.
+\section{Recommendation}
+\label{sec:rec}
+I would recommend this paper to those interested in understanding AI contextually. The paper accessibly explains the challenges behind understanding human cognition and \emph{why} representing this via computational logic makes sense.
+
+% What impact the methods, data, and/or results will have on the community beyond computer science.
+\section{Social Impact}
+\label{sec:impact}
+This paper is highly relevant to work not just in computer science and AI, but also in cognitive science, developmental psychology, and teaching. This paper is an exemplar of interdisciplinary work, and will inform further research related to our understanding of our species. 
+
+% This can be notation, methods, language, or ideas
+\section{What I looked up}
+\label{sec:looked up}
+I looked up specific methods pertaining to HBM, how the figures were generated, including CRP and IBP, and other technical terminology. 
+
+\bibliography{references}
+
+\end{document}

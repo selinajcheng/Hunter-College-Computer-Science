@@ -1,0 +1,183 @@
+% ----------
+% A LaTeX template for course project reports
+% 
+% This template is modified from "Tech Report ala MIT AI Lab (1981)"
+% 
+% ----------
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin = 1in]{geometry} % sets 1-inch margin on all sides
+
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[runin]{abstract}
+\usepackage{titling}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{helvet}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{blindtext}
+\usepackage{parskip}
+\usepackage{etoolbox}
+
+\usepackage{titlesec}
+\usepackage{cite}
+\bibliographystyle{IEEEtran}
+
+\input{preamble.tex}
+
+% ----------
+% Variables
+% ----------
+
+% Set all headings to sans serif font
+\titleformat{\section}{\fontfamily{lmss}\selectfont\Large\bfseries}{}{}{}[]
+\titleformat{\subsection}{\fontfamily{lmss}\selectfont\large\bfseries}{}{}{}[]
+\titleformat{\subsubsection}{\fontfamily{lmss}\selectfont\normalsize\bfseries}{}{}{}[]
+
+\title{\textbf{CSCI 493.89 Research in AI and ML\\Assignment 1: \LaTeX{}}} % Full title of your tech report
+\runningtitle{Assignment 1: \LaTeX{}} % Short title
+\author{Selina Cheng} % Full list of authors
+\runningauthor{Cheng} % Short list of authors
+\affiliation{CUNY Hunter College} % Affiliation e.g. University or Company
+\department{Department of Computer Science} % Department or Office
+\memoid{EMPLID: 24418572} % Project group ID that were shared with the class earlier.
+\theyear{2025} % year of the tech report
+\mydate{January 29, 2025} %the date
+
+
+% ----------
+% actual document
+% ----------
+\begin{document}
+\pagestyle{empty}
+%\maketitle
+
+% \begin{abstract}
+    % \noindent
+    
+    % \blindtext[1] % Delete this line.  It just creates some text for display purposes.
+
+    % Uncomment the following to add keywords as needed
+    % \keywords{Keyword1, Keyword2, Keyword3}
+
+    % This is an example abstract. In this course, we will learn to engage with technical papers, namely in AI and ML research. This course is taught by Dr. Susan Epstein and is comprised of 13 students. This document is practice for writing about technical papers using \LaTeX{}.
+% \end{abstract}
+
+\vspace{2.5cm}
+
+% Uncomment the following to add thanks.
+% {\footnotesize
+%     \noindent
+%     Special thanks to \textbf{Person 1} and \textbf{Affiliation A} for financial support for this project.
+% }
+
+%\thispagestyle{firstpage}
+
+%\pagebreak
+
+% ----------
+% End of first page
+% ----------
+
+\newgeometry{} % Redefine geometries (normal margins)
+
+\textbf{CSCI 493.89 Research in AI and ML}
+
+Assignment 2: A Computational Model of Commonsense Moral Decision Making
+
+February 5, 2025
+
+\section{Subject}
+\label{sec:subject}
+
+%\blindmathpaper % Delete this line.  It just creates some text for display purposes.
+
+R. Kim, M. Kleiman-Weiner, A. Abeliuk, E. Awad, S. Dsouza, J. Tenenbaum, and I. Rahwan, "A Computational Model of Commonsense Moral Decision Making," in \emph{Proceedings of the 2018 AAAI/ACM Conference on AI, Ethics, and Society}, 2018. [Online]. Available: https://arxiv.org/abs/1801.04346
+
+\section{Summary}
+\label{sec:summary}
+
+The authors present a computational model for moral decision-making. The model can infer abstract moral principles from a limited amount of observed data, attempts to address the nuances of moral decision-making with Bayesian inference, and can replicate human-like decisions even in complex scenarios.
+
+\section{Thesis Statement}
+\label{sec:thesis}
+
+A hierarchical Bayesian model can effectively replicate human-like moral decision-making in ethical AI systems.
+
+\section{Principal Results}
+\label{sec:principal}
+
+The developed model accurately predicts and aligns with human responses in diverse scenarios. Abstract ethical principles can be quantified as weights AI systems can use.
+% \pagebreak
+
+\section{Clarity}
+\label{sec:clarity}
+
+The model's ability to effectively predict human responses was clear. The mathematical components behind the hierarchical moral principles were still least clear.
+
+\section{Relevance}
+\label{sec:relevance}
+
+In SCI 111, we previously learned about the Moral Machine. Now, we get to read about the model that makes use of it.
+
+\section{Further Study}
+\label{sec:further}
+
+How would we apply this model in reality? How do we account for cultural differences in morals? Are the rules AI systems follow then differ from location to location? How do we account for consensus?
+
+\section{Impact}
+\label{sec:impact}
+
+Moral principles are typically thought to be unquantifiable. This paper contradicts this assumption and makes significant headway to enable moral decision-making in machines.
+
+\section{Ethical Science}
+\label{sec:ethical}
+
+These are the issues/questions I see arising: the degree of required accountability and transparency on how machines make decisions, consistency of the rules models follow, deciding to go with what's widely accepted (the moral consensus).
+
+\section{Recommendation}
+\label{sec:rec}
+
+I would recommend this to those interested in ethics and technology, especially autonomous technology, e.g., self-driving cars.
+
+% Uncomment following to add an acknowledgement section
+% \section*{Acknowledgements}
+
+% Thanks again to \textbf{Person 1} and \textbf{Affiliation A} for their financial support.
+
+% ----------
+% Bibliography
+% ----------
+
+% Uncomment the following and add your references into biblio.bib file
+% \bibliography{./biblio.bib}
+% \bibliographystyle{abbrv}
+
+%\appendix
+
+%\section{An appendix}
+
+%\blindtext % Delete this line.  It just creates some text for display purposes.
+
+%\section{Another appendix}
+
+%\subsection*{Subsectioning in appendix}
+
+%Some more text, and a list:
+
+%\blindenumerate % Delete this line.  It just creates some text for display purposes.
+
+% \begin{thebibliography}{9}
+
+% \bibitem{sicp}
+% H. Abelson, G. J. Sussman, and J. Sussman, \emph{Structure and Interpretation of Computer Programs}, 2nd ed. Cambridge, MA: MIT Press, 1996.
+
+% \end{thebibliography}
+
+\bibliography{references}
+
+\end{document}
+
+% ----------

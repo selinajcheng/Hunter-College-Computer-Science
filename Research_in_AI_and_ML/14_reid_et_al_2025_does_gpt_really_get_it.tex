@@ -1,0 +1,106 @@
+% ----------
+% A LaTeX template for course project reports
+% 
+% This template is modified from "Tech Report ala MIT AI Lab (1981)"
+% 
+% ----------
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin = 1in]{geometry} % sets 1-inch margin on all sides
+
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[runin]{abstract}
+\usepackage{titling}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{helvet}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{blindtext}
+\usepackage{parskip}
+\usepackage{etoolbox}
+
+\usepackage{titlesec}
+\usepackage{cite}
+\bibliographystyle{IEEEtran}
+
+\input{preamble.tex}
+
+% ----------
+% Variables
+% ----------
+
+% Set all headings to sans serif font
+\titleformat{\section}{\fontfamily{lmss}\selectfont\Large\bfseries}{}{}{}[]
+\titleformat{\subsection}{\fontfamily{lmss}\selectfont\large\bfseries}{}{}{}[]
+\titleformat{\subsubsection}{\fontfamily{lmss}\selectfont\normalsize\bfseries}{}{}{}[]
+
+% ----------
+% actual document
+% ----------
+%\linespread{1.0}
+\begin{document}
+\pagestyle{empty}
+\singlespacing
+\vspace{1.0cm}
+
+\newgeometry{} % Redefine geometries (normal margins)
+
+% \textbf{CSCI 493.89 Research in AI and ML}: Assignment 6
+
+% full bibliographic reference including title, author, date, venue. 
+\section{Subject}
+\label{sec:subject}
+M. Reid and S. S. Vempala, “Does GPT Really Get It? A Hierarchical Scale to Quantify Human and AI’s Understanding of Algorithms,” arXiv preprint, 2025. [Online]. Available: https://arxiv.org/abs/2406.14722
+
+% describe the content, including its three most important points.
+\section{Summary}
+\label{sec:summary}
+This paper introduces a hierarchical framework in an attempt to measure and compare algorithmic understanding in humans and AI. To quantify understanding, the authors introduce a five-level hierarchy that ranges from execution to counterfactual reasoning. The authors then compare GPT models with students. The paper gives insight into the limitations of LLMs, both of past and current models.
+
+% Identify the author’s underlying thesis in a single sentence.
+\section{Thesis Statement}
+\label{sec:thesis}
+To compare algorithmic understanding in humans and AI, a hierarchical framework is needed to successfully evaluate progress in LLMs.
+
+% Identify the principal results of the research. (If it is a survey paper, indicate instead the major points instead.)
+\section{Principal Results}
+\label{sec:principal}
+The response score of GPT-4 was on par with graduate students and on average performed better than undergraduate students on 3/5 questions. It was also found that including an example response has differing effects on performance dependent on the model. All models of GPT struggled to produce a graph with a prescribed property, occasionally produced hallucinations, and incorrectly "hedges" its answers.
+
+% \pagebreak
+
+% What parts were the clearest? What parts were the least clear?
+\section{Clarity}
+\label{sec:clarity}
+The hierarchy explanations were most clear. The preliminaries were least clear.
+
+% How does the paper relate to others you have read? Provide full bibliographic citations. At least say what kind of papers would have been relevant. If you reference one of their references, say something specific about it
+\section{Relevance}
+\label{sec:relevance}
+In the Savelka et al. 2023 paper, the authors studied the performance of past GPT models on university assessments \cite{Savelka_2023}. Both papers concluded that LLMs can now perform at least on the undergraduate student level.
+
+% Ask at least three thoughtful questions, now that you have read it. These might be thesis topic ideas, or ways the material relates to other work in problem solving or statistics or computer science with which you are familiar.
+\section{Further Study}
+\label{sec:further}
+Why do LLMs struggle with mathematical reasoning and how can this be addressed? Can this hierarchy be generalized and to what? What are the limitations to comparing understanding when our knowledge of human understanding is limited?
+
+% Why would you reread this paper, or recommend it to a colleague? This should not be a review.
+\section{Recommendation}
+\label{sec:rec}
+I would recommend this paper to those interested in education, neuroscience, and generative AI. The paper has implications on education, compares human to AI cognition, and sheds light on the progression of LLM models.
+
+% What impact the methods, data, and/or results will have on the community beyond computer science.
+\section{Social Impact}
+\label{sec:impact}
+The ability of current LLMs to perform on a similar level with graduate students calls into question much of our traditional education systems, not just up to undergraduate, but graduate school. But on another hand, the improving performance of LLMs stand to benefit individuals including small businesses.
+
+% This can be notation, methods, language, or ideas
+\section{What I looked up}
+\label{sec:looked up}
+URM framework, Ford-Fulkerson algorithm
+
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,184 @@
+% ----------
+% A LaTeX template for course project reports
+% 
+% This template is modified from "Tech Report ala MIT AI Lab (1981)"
+% 
+% ----------
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin = 1in]{geometry} % sets 1-inch margin on all sides
+
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[runin]{abstract}
+\usepackage{titling}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{helvet}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{blindtext}
+\usepackage{parskip}
+\usepackage{etoolbox}
+
+\usepackage{titlesec}
+\usepackage{cite}
+\bibliographystyle{IEEEtran}
+
+\input{preamble.tex}
+
+% ----------
+% Variables
+% ----------
+
+% Set all headings to sans serif font
+\titleformat{\section}{\fontfamily{lmss}\selectfont\Large\bfseries}{}{}{}[]
+\titleformat{\subsection}{\fontfamily{lmss}\selectfont\large\bfseries}{}{}{}[]
+\titleformat{\subsubsection}{\fontfamily{lmss}\selectfont\normalsize\bfseries}{}{}{}[]
+
+\title{\textbf{CSCI 493.89 Research in AI and ML\\Assignment 1: \LaTeX{}}} % Full title of your tech report
+\runningtitle{Assignment 1: \LaTeX{}} % Short title
+\author{Selina Cheng} % Full list of authors
+\runningauthor{Cheng} % Short list of authors
+\affiliation{CUNY Hunter College} % Affiliation e.g. University or Company
+\department{Department of Computer Science} % Department or Office
+\memoid{EMPLID: 24418572} % Project group ID that were shared with the class earlier.
+\theyear{2025} % year of the tech report
+\mydate{January 29, 2025} %the date
+
+
+% ----------
+% actual document
+% ----------
+%\linespread{1.0}
+\begin{document}
+\pagestyle{empty}
+\singlespacing
+
+%\maketitle
+
+% \begin{abstract}
+    % \noindent
+    
+    % \blindtext[1] % Delete this line.  It just creates some text for display purposes.
+
+    % Uncomment the following to add keywords as needed
+    % \keywords{Keyword1, Keyword2, Keyword3}
+
+    % This is an example abstract. In this course, we will learn to engage with technical papers, namely in AI and ML research. This course is taught by Dr. Susan Epstein and is comprised of 13 students. This document is practice for writing about technical papers using \LaTeX{}.
+% \end{abstract}
+
+\vspace{1.0cm}
+
+% Uncomment the following to add thanks.
+% {\footnotesize
+%     \noindent
+%     Special thanks to \textbf{Person 1} and \textbf{Affiliation A} for financial support for this project.
+% }
+
+%\thispagestyle{firstpage}
+
+%\pagebreak
+
+% ----------
+% End of first page
+% ----------
+
+\newgeometry{} % Redefine geometries (normal margins)
+
+\textbf{CSCI 493.89 Research in AI and ML}: Assignment 4
+
+% full bibliographic reference including title, author, date, venue. 
+\section{Subject}
+\label{sec:subject}
+Awad, Dsouza, Kim, Schulz, Henrich, Shariff, J. Bonnefon, and Rahwan, "The Moral Machine experiment," \emph{Nature}, vol. 563, pp. 59-64, 2018. [Online]. Available: https://www.nature.com/articles/s41586-018-0637-6
+
+%\blindmathpaper % Delete this line.  It just creates some text for display purposes.
+
+% describe the content, including its three most important points.
+\section{Summary}
+\label{sec:summary}
+This paper details an analysis of the data collected from Moral Machine, a website that asks participants to make moral decisions an autonomous vehicle (AV) may encounter. Preferences of the measured nine attributes corresponded to identified cultural clusters. The possibility of general populace agreement on moral principles is established. The research also sheds light on delegating moral decision making to machines.
+
+% Identify the author’s underlying thesis in a single sentence.
+\section{Thesis Statement}
+\label{sec:thesis}
+Despite cultural differences, global moral preferences exhibit a reliable correlation across nine key attributes, suggesting some universality in moral principles.
+
+% Identify the principal results of the research. (If it is a survey paper, indicate instead the major points instead.)
+\section{Principal Results}
+\label{sec:principal}
+39.61 million decisions were collected from 233 countries. Individual variations were found to have no significant impact on the results. Three distinct "moral clusters" were found that a) were broadly dependent on cultural and geographical proximity, and b) differ greatly in the weight given to some of the nine attributes. Cultural and economic differences were found to highly correlate with preferences.
+
+% \pagebreak
+
+% What parts were the clearest? What parts were the least clear?
+\section{Clarity}
+\label{sec:clarity}
+It was clearest how select preferences differed across cultural clusters. It was least clear how the average marginal component effect (AMCE) was calculated.
+
+% How does the paper relate to others you have read? Provide full bibliographic citations.
+\section{Relevance}
+\label{sec:relevance}
+This paper relates to \cite{10.1145/3278721.3278770}, which describes a hierarchial Bayesian model trained on the same data from the Moral Machine discussed to predict individual responses. 
+
+% Ask at least three thoughtful questions, now that you have read it. These might be thesis topic ideas, or ways the material relates to other work in problem solving or statistics or computer science with which you are familiar.
+\section{Further Study}
+\label{sec:further}
+Can morality be crowdsourced? Majorities have historically upheld unethical practices, so would this simply reinforce biases? Should moral algorithms adapt to local laws? What happens if an AV crosses national borders where moral norms differ?
+
+% Why would you reread this paper, or recommend it to a colleague? This should not be a review.
+\section{Recommendation}
+\label{sec:rec}
+I would recommend this paper to those interested in ethics, thought experiments, and especially in relation to AVs/tech.
+
+% What impact the methods, data, and/or results will have on the community beyond computer science.
+\section{Social Impact}
+\label{sec:impact}
+This paper's attempt to decipher moral codes internationally has implications that extend beyond AVs. Higher country-level economic inequality corresponding to social status preferences implies that biases \emph{can} be reinforced. How the AV industry implements machine ethics will likely influence the approach other industries follow.
+
+% This can be notation, methods, language, or ideas
+\section{What I looked up}
+\label{sec:looked up}
+N/A
+
+% Uncomment following to add an acknowledgement section
+% \section*{Acknowledgements}
+
+% Thanks again to \textbf{Person 1} and \textbf{Affiliation A} for their financial support.
+
+% ----------
+% Bibliography
+% ----------
+
+% Uncomment the following and add your references into biblio.bib file
+% \bibliography{./biblio.bib}
+% \bibliographystyle{abbrv}
+
+%\appendix
+
+%\section{An appendix}
+
+%\blindtext % Delete this line.  It just creates some text for display purposes.
+
+%\section{Another appendix}
+
+%\subsection*{Subsectioning in appendix}
+
+%Some more text, and a list:
+
+%\blindenumerate % Delete this line.  It just creates some text for display purposes.
+
+% \begin{thebibliography}{9}
+
+% \bibitem{sicp}
+% H. Abelson, G. J. Sussman, and J. Sussman, \emph{Structure and Interpretation of Computer Programs}, 2nd ed. Cambridge, MA: MIT Press, 1996.
+
+% \end{thebibliography}
+
+% Use a standard bibliographic format. One-time extra credit if you figure out how to use bibtex! Send me proof with your LaTeX file.
+\bibliography{references}
+
+\end{document}
+
+% ----------

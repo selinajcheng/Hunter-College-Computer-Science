@@ -1,0 +1,164 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin = 1in]{geometry} % sets 1-inch margin on all sides
+
+%- Language and encoding
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{microtype}
+
+%- Bibliography-related
+\usepackage{cite}
+\bibliographystyle{IEEEtran}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{setspace}
+
+\usepackage{hyperref}
+\usepackage[nameinlink]{cleveref}
+
+\usepackage{titling}
+\usepackage{parskip}
+\usepackage{etoolbox}
+
+%- Fonts and headings
+\usepackage{helvet}
+\usepackage{titlesec}
+
+% Set all headings to sans serif font
+\titleformat{\section}[runin]
+  {\sffamily\bfseries\medium} % font: sans-serif bold large
+  {\thesection.}{0.5em}{}[\quad] % 1em space after label; \quad space after title
+\titleformat{\subsection}{\fontfamily{lmss}\selectfont\medium\bfseries}{}{}{}[]
+\titleformat{\subsubsection}{\fontfamily{lmss}\selectfont\normalsize\bfseries}{}{}{}[]
+
+%— Paragraph spacing
+\setlength{\parskip}{.5ex plus .2ex minus .2ex}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+\pagestyle{empty}
+\singlespacing
+\vspace{1.0cm}
+
+\begin{spacing}{1.10}
+
+% full bibliographic reference including title, author, date, venue. 
+\section{Subject}
+\label{sec:subject}
+\leavevmode\par\noindent
+W. Dai, J. Li, D. Li, A. Tiong, J. Zhao, W. Wang, B. Li, P. N. Fung, and S. Hoi, “InstructBLIP: Towards general-purpose vision-language models with instruction tuning,” in Advances in Neural Information Processing Systems, A. Oh, T. Naumann, A. Globerson, K. Saenko, M. Hardt, and S. Levine, Eds., vol. 36. Curran Associates, Inc., 2023, pp. 49 250–49 267. [Online]. Available: \url{https://proceedings.neurips.cc/paper_files/paper/2023/file/9a6a435e75419a836fe47ab6793623e6-Paper-Conference.pdf}
+
+% Why you chose this paper
+\section{Why I chose this paper}
+\label{sec:why}
+\leavevmode\par\noindent
+I chose this paper because I was curious about vision-language models and details of how zero-shot learning, which was also a concept that I was new to, could be enabled for a model compared to prior models. The traditional generative AI with which we interact from day to day usually consists of text-only interactions. Sure, some do have the ability to parse multimedia along with text, but at the very least, text is the most well-known capability of LLMs, and probably the most utilized.\\
+
+One of the other reasons I chose this paper was that I had previously interacted with Bing AI's text-to-image generator with my friends. It was something I found really amusing at times and I became curious about the opposite: how do models read in an image and generate text or engage in conversation based on the image? I had always given ChatGPT or other models PDFs containing images without much thought, assuming that the LLM would only process the alt text (if any) from those images, and not the image itself. 
+
+% describe the content, including its three most important points.
+\section{Summary}
+\label{sec:summary}
+\leavevmode\par\noindent
+Building general-purpose vision-language models (VLMs) that can answer any arbitrary instruction about an image is challenging. With images comes an inherent diversity, both input-wise and the questions that may be asked about the image. Images are also a departure from the medium large-language models (LLMs) are best at: text.\\
+
+Prior solutions have been attempted, including multitask learning, but without instructions, generalization to unseen data and tasks is not achieved.\\
+
+The use of image captions has also been attempted. However, as the authors note: "A simple caption or description of the image may not be sufficient to accurately answer queries because not all of the necessary details may be included."\\
+
+\begin{enumerate}
+    \item The authors address this challenge through InstructBLIP, providing a significant advancement towards broadly competent VLMs. InstructBLIP builds on the pretrained BLIP-2 architecture and introduces a new framework for instruction tuning for vision-language models (VLMs).
+    \item Prior to InstructBLIP, both large-scale pretraining and instruction tuning for VLMs have been explored and proven effective through papers including the authors' previous work on BLIP-2 \cite{li2023blip2bootstrappinglanguageimagepretraining}.
+    \item What's new about InstructBLIP is that it introduces an \emph{instruction-aware} Query Transformer (Q-Former), as opposed to the instruction-agnostic Q-Former in BLIP-2. With the addition of this instruction-aware component, the Q-Former is enabled to extract tailored visual features specific to each given prompt. This allows \emph{dynamic} as opposed to static visual representations to be fed into the LLM to illicit more accurate, useful, and relevant answers. This is especially advantageous if instructions are expected to vary for the same input image.\\
+\end{enumerate}
+
+Pretraining is initialized with a pre-trained BLIP-2 model, containing the same image encoder (ViT-g/14), four different frozen LLMs, and a Q-Former, which acts as a bridge between the image encoder and LLM.\\
+
+After pretraining, InstructBLIP inputs instruction text embeddings into the Q-Former to extract visual embeddings that are adapted to soft prompts that guide the LLM to give an answer reflecting both the image and instruction.
+
+% Identify the author’s underlying thesis in a single sentence.
+\section{Thesis Statement}
+\label{sec:thesis}
+\leavevmode\par\noindent
+The modular architecture of InstructBLIP, which includes an instruction-aware Query Transformer built upon an instruction-tuning framework, allows for effective generalization to unseen data and vision-language tasks using any frozen pre-trained LLM.
+
+% Identify the principal results of the research. (If it is a survey paper, indicate instead the major points instead.)
+\section{Principal Results}
+\label{sec:principal}
+\leavevmode\par\noindent
+The authors evaluate InstructBLIP on 26 different datasets, separating training/validation and evaluation datasets into 13 held-in and 13 held-out datasets, respectively.\\
+
+The zero-shot performance of InstructBLIP models on unseen data and task categories are evaluated by different metrics by dataset. InstructBLIP's zero-shot performance is compared to the state-of-the-art (SOTA) models at the time: BLIP-2 and Flamingo. \\
+
+InstructBLIP achieves new zero-shot SOTA results on all but one dataset, when its performance on the Visual Spatial Reasoning (VSR) dataset is compared to its backbone, BLIP-2. However, the authors state InstructBLIP to perform better on all datasets in both their figures and results section. It is unclear why.\\
+
+The effective of instruction tuning is demonstrated, however, both through the main experiment and ablation studies done.\\
+
+InstructBLIP models demonstrate a 47.7\% relative improvement on MSRVTT-QA, a held-out video question-answer dataset and task category, over previous SOTA despite never being trained on temporal video data.\\
+
+Across the available datasets (7), which include all held-out video question answering datasets, InstructBLIP's smallest model, FlanT5-XL, consistently outperforms all Flamingo models, including the largest with 80B parameters.\\
+
+In the examples provided by the authors, InstructBLIP seems to allow LLMs to provide more knowledge-grounded image descriptions, recognize metaphorical implications, more effectively engage in multi-turn conversations. 
+
+% What you had to learn to understand and present this paper and where you got that knowledge. Be sure to cite all your sources.
+\section{What I had to learn}
+\label{sec:learn}
+\leavevmode\par\noindent
+In order to understand and present this paper, I did a number of things. While reading the paper, I searched up any terminology I was unfamiliar with and wasn't explained immediately in the paper. Examples of these are multitask learning \cite{geeksforgeeks2023mtl} and rich input distributions \cite{han2022cropmixsamplingrichinput}.\\
+
+After reading the paper, I asked my professor, Dr. Susan Epstein, about InstructBLIP's architecture because it was only briefly explained on a high level in a few paragraphs and the figure was also sparse in details. I realize in hindsight now that they did not go as in-depth as I expected on the architecture because a large portion of it was taken directly from BLIP-2, for which there was already a paper on.\\
+
+I also looked through the authors' previous work to InstructBLIP, including BLIP \cite{li2022blipbootstrappinglanguageimagepretraining} and BLIP-2 \cite{li2023blip2bootstrappinglanguageimagepretraining}, to get a more comprehensive understanding of InstructBLIP and what it was based on.\\
+
+To better understand thoughts on the paper, I looked for any interviews or presentations the authors gave on InstructBLIP. I couldn't find anything in particular for InstructBLIP, maybe because this work was likely spearheaded by an intern, but I found an interview prior to InstructBLIP with authors Junnan Li and Dongxu Li in conversation with Nathan Labenz on 'The Cognitive Revolution' podcast \cite{labenz2023ai}. In the interview, they discuss the architecture of BLIP-2, which I found helpful.\\
+
+On YouTube, I also found a 6-minute presentation on InstructBLIP, given by students Seung Hyung Hahm and Chunhui Zhang at Dartmouth College in 2024 \cite{hahmzhang2024instructblip}. This was good for making sure that I understood the paper, and it was helpful to see what others found important enough in the paper to present.
+
+% Relevance to other material covered in class or read elsewhere. Provide full bibliographic citations for at least 3 non-video, reputable sources and what you learned from them.
+% How does the paper relate to others you have read? Provide full bibliographic citations. At least say what kind of papers would have been relevant. If you reference one of their references, say something specific about it
+\section{Relevance}
+\label{sec:relevance}
+\leavevmode\par\noindent
+While reading the paper, I noticed there were parallels to a 2024 paper by Tsai et al. about their Ring-A-Bell framework, which I gave a lightning talk on \cite{tsai2024ringabellreliableconceptremoval}. In Ring-A-Bell's methodology, a concept vector representing an abstract desired concept, e.g., violence, is infused into a given neutral prompt. For InstructBLIP, an initially instruction-agnostic Q-Former is similarly "infused" with the instruction embeddings so that tailored visual features may be extracted. Both methods allow for customization to user wants in different ways.\\
+
+I also looked through some of the authors' previous work on BLIP \cite{li2022blipbootstrappinglanguageimagepretraining} and BLIP-2 \cite{li2023blip2bootstrappinglanguageimagepretraining}. These were the predecessors to InstructBLIP and BLIP-2 was also compared to as a state-of-the-art baseline. These papers were also helpful to understand what new methods InstructBLIP was introducing and which methods it was taking from prior work. The latter was not made incredibly clear in the paper.
+
+% Recommendation: To whom would you recommend this paper and why? 
+% Why would you reread this paper, or recommend it to a colleague? This should not be a review.
+\section{Recommendation}
+\label{sec:rec}
+\leavevmode\par\noindent
+I had no idea that ChatGPT models and some libraries such as HuggingFace had implemented InstructBLIP or BLIP-2. One of the questions I initially had when choosing this paper was how LLMs can read in images and extrapolate from them. It turns out that I may have been interacting with a BLIP-2 or instruction-tuning enabled framework all along, and it is really fantastic to see this come full circle.\\
+
+As a result, I would first recommend this paper to anyone who has interacted with generative AI, especially those on a regular basis. The instruction templates may even be useful for coming up with better prompts.\\
+
+Similarly, I would also recommend this paper to those who are interested in prompt engineering, since some models are instruction-tuned and instruction format may be more conducive to better answers.
+
+% Social impact: What impact would the methods, data, and/or results be likely to have on the community beyond computer science?
+\section{Social Impact}
+\label{sec:impact}
+\leavevmode\par\noindent
+With InstructBLIP enabling better generalization to vision-language tasks, captioning images and screenshots can be automated. Alt text can also be made more universal as a result. A developer or image owner usually has to manually enter alt text, which takes additional time and may deter people from writing alt text. As a result, websites and images are less accessible. Additional uses in accessibility may include an enhanced or new feature for tools to describe images or scenery to individuals who are visually impaired or blind.\\
+
+The ability of instruction-tuning enabled LLMs to better engage with image- and text-based conversations also means an increased ability to answer any question, including those in schooling. Initially, students may have had to describe the image to the LLM manually, but with this, more questions can be easily answered. With more advancements in LLMs to answer any arbitrary instruction, less and less educational material is left invulnerable.
+
+% Research ideas. Propose at least three thoughtful questions inspired by this particular paper. These might be thesis topic ideas, tiny steps beyond the work, or ways the material relates to other work in problem solving or statistics or computer science with which you are familiar. Avoid questions that could apply to most any paper.
+% Ask at least three thoughtful questions, now that you have read it. These might be thesis topic ideas, or ways the material relates to other work in problem solving or statistics or computer science with which you are familiar.
+\section{Research Ideas}
+\label{sec:further}
+\leavevmode\par\noindent
+To prevent jailbreaking of models that use InstructBLIP, can a checkpoint before image embeddings are given to the Q-Former be established that checks for unsafe image embeddings? Or would a checkpoint after visual features are extracted be more effective?\\
+
+Even though InstructBLIP enables dynamic visual features representations, they're still only static image-to-text tasks. But real-world applications require reasoning not about one snapshot in time, but multiple points in time through temporal data. One potential way to explore this would be to extend InstructBLIP to video or audio tasks. This could have potential to be applied to robotics or augmented reality (AR) if effective.\\
+
+The authors do not address hallucination and how it might be prevented for InstructBLIP. Only the best examples were included in the paper and hallucination must still be a problem, even with InstructBLIP's reported performance. A possible research question is whether you can add a metric or loss function that penalizes against hallucination, ideally during instruction-tuning.
+
+\bibliography{references}
+
+\end{spacing}
+
+\end{document}

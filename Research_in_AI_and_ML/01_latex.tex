@@ -1,0 +1,201 @@
+% ----------
+% A LaTeX template for course project reports
+% 
+% This template is modified from "Tech Report ala MIT AI Lab (1981)"
+% 
+% ----------
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin = 1in]{geometry} % sets 1-inch margin on all sides
+
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[runin]{abstract}
+\usepackage{titling}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{helvet}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{blindtext}
+\usepackage{parskip}
+\usepackage{etoolbox}
+
+\usepackage{titlesec}
+\usepackage{cite}
+\bibliographystyle{IEEEtran}
+
+\input{preamble.tex}
+
+% ----------
+% Variables
+% ----------
+
+% Set all headings to sans serif font
+\titleformat{\section}{\fontfamily{lmss}\selectfont\Large\bfseries}{}{}{}[]
+\titleformat{\subsection}{\fontfamily{lmss}\selectfont\large\bfseries}{}{}{}[]
+\titleformat{\subsubsection}{\fontfamily{lmss}\selectfont\normalsize\bfseries}{}{}{}[]
+
+\title{\textbf{CSCI 493.89 Research in AI and ML\\Assignment 1: \LaTeX{}}} % Full title of your tech report
+\runningtitle{Assignment 1: \LaTeX{}} % Short title
+\author{Selina Cheng} % Full list of authors
+\runningauthor{Cheng} % Short list of authors
+\affiliation{CUNY Hunter College} % Affiliation e.g. University or Company
+\department{Department of Computer Science} % Department or Office
+\memoid{EMPLID: 24418572} % Project group ID that were shared with the class earlier.
+\theyear{2025} % year of the tech report
+\mydate{January 29, 2025} %the date
+
+
+% ----------
+% actual document
+% ----------
+\begin{document}
+\pagestyle{empty}
+%\maketitle
+
+% \begin{abstract}
+    % \noindent
+    
+    % \blindtext[1] % Delete this line.  It just creates some text for display purposes.
+
+    % Uncomment the following to add keywords as needed
+    % \keywords{Keyword1, Keyword2, Keyword3}
+
+    % This is an example abstract. In this course, we will learn to engage with technical papers, namely in AI and ML research. This course is taught by Dr. Susan Epstein and is comprised of 13 students. This document is practice for writing about technical papers using \LaTeX{}.
+% \end{abstract}
+
+\vspace{2.5cm}
+
+% Uncomment the following to add thanks.
+% {\footnotesize
+%     \noindent
+%     Special thanks to \textbf{Person 1} and \textbf{Affiliation A} for financial support for this project.
+% }
+
+%\thispagestyle{firstpage}
+
+%\pagebreak
+
+% ----------
+% End of first page
+% ----------
+
+\newgeometry{} % Redefine geometries (normal margins)
+
+\textbf{CSCI 493.89 Research in AI and ML}
+
+Assignment 1: \LaTeX{}
+
+Selina Cheng
+
+January 29, 2025
+
+\section{Subject}
+\label{sec:subject}
+
+%\blindmathpaper % Delete this line.  It just creates some text for display purposes.
+
+This is a full bibliographic reference of the technical paper I'm writing about.
+
+\section{Summary}
+\label{sec:summary}
+
+Description of content goes here.
+
+\begin{enumerate}
+    \item Important point 1.
+    \item Important point 2.
+    \item Important point 3.
+\end{enumerate}
+
+\section{Thesis Statement}
+\label{sec:thesis}
+
+Single sentence describing author's thesis statement.
+
+\section{Principal Results}
+\label{sec:principal}
+
+Identification and explanation of the principal results of the research paper.
+
+\section{Clarity}
+\label{sec:clarity}
+
+What was clearest.
+
+What was least clear.
+
+\section{Relevance}
+\label{sec:relevance}
+
+Explanation of relation to previously read papers and bibliographic citation of said previously read papers. According to \cite{sicp} listed in IEEE format, ...
+
+\section{Further Study}
+\label{sec:further}
+
+\begin{enumerate}
+    \item Thoughtful question 1.
+    \item Thoughtful question 2.
+    \item Thoughtful question 3.
+\end{enumerate}
+
+\section{Impact}
+\label{sec:impact}
+
+Reflections on impact and/or potential impact of this research on the field's knowledge.
+
+\section{Ethical Science}
+\label{sec:ethical}
+
+Discussion of ethical aspects present and future societal consequences of this research.
+
+\section{Recommendation}
+\label{sec:rec}
+
+I would recommend any computer science student take this course to:
+\begin{itemize}
+    \item Learn how to learn, specifically from potentially complex technical papers.
+    \item Learn about the landscape of AI and ML.
+    \item Learn from Dr. Epstein and fellow CS students.
+\end{itemize}
+
+% Uncomment following to add an acknowledgement section
+% \section*{Acknowledgements}
+
+% Thanks again to \textbf{Person 1} and \textbf{Affiliation A} for their financial support.
+
+% ----------
+% Bibliography
+% ----------
+
+% Uncomment the following and add your references into biblio.bib file
+% \bibliography{./biblio.bib}
+% \bibliographystyle{abbrv}
+
+%\appendix
+
+%\section{An appendix}
+
+%\blindtext % Delete this line.  It just creates some text for display purposes.
+
+%\section{Another appendix}
+
+%\subsection*{Subsectioning in appendix}
+
+%Some more text, and a list:
+
+%\blindenumerate % Delete this line.  It just creates some text for display purposes.
+
+% \begin{thebibliography}{9}
+
+% \bibitem{sicp}
+% H. Abelson, G. J. Sussman, and J. Sussman, \emph{Structure and Interpretation of Computer Programs}, 2nd ed. Cambridge, MA: MIT Press, 1996.
+
+% \end{thebibliography}
+
+\bibliography{references}
+
+\end{document}
+
+% ----------

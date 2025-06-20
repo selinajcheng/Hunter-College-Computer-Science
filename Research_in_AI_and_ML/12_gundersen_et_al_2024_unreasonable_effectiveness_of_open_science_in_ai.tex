@@ -1,0 +1,106 @@
+% ----------
+% A LaTeX template for course project reports
+% 
+% This template is modified from "Tech Report ala MIT AI Lab (1981)"
+% 
+% ----------
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin = 1in]{geometry} % sets 1-inch margin on all sides
+
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[runin]{abstract}
+\usepackage{titling}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{helvet}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{blindtext}
+\usepackage{parskip}
+\usepackage{etoolbox}
+
+\usepackage{titlesec}
+\usepackage{cite}
+\bibliographystyle{IEEEtran}
+
+\input{preamble.tex}
+
+% ----------
+% Variables
+% ----------
+
+% Set all headings to sans serif font
+\titleformat{\section}{\fontfamily{lmss}\selectfont\Large\bfseries}{}{}{}[]
+\titleformat{\subsection}{\fontfamily{lmss}\selectfont\large\bfseries}{}{}{}[]
+\titleformat{\subsubsection}{\fontfamily{lmss}\selectfont\normalsize\bfseries}{}{}{}[]
+
+% ----------
+% actual document
+% ----------
+%\linespread{1.0}
+\begin{document}
+\pagestyle{empty}
+\singlespacing
+\vspace{1.0cm}
+
+\newgeometry{} % Redefine geometries (normal margins)
+
+% \textbf{CSCI 493.89 Research in AI and ML}: Assignment 6
+
+% full bibliographic reference including title, author, date, venue. 
+\section{Subject}
+\label{sec:subject}
+O. E. Gundersen, O. Cappelen, M. Mølnå, and N. G. Nilsen, “The unreasonable effectiveness of open science in ai: A replication study,” 2024. [Online]. Available: https://arxiv.org/abs/2412.17859
+
+% describe the content, including its three most important points.
+\section{Summary}
+\label{sec:summary}
+This paper is a replication study on the impact of open science practices on AI research, particularly in terms of effects on field advancement and reproducibility of results. The authors compare outcomes from experiments sourced from multiple high-profile AI papers. Papers include those that use open datasets, code, and methods versus those using proprietary or closed approaches. The authors also discuss the challenges of widespread adoption of open science in the AI research community.
+
+% Identify the author’s underlying thesis in a single sentence.
+\section{Thesis Statement}
+\label{sec:thesis}
+Open science practices in AI research yield more reliable and reproducible results than closed approaches, necessitating more efforts to expand open science be taken.
+
+% Identify the principal results of the research. (If it is a survey paper, indicate instead the major points instead.)
+\section{Principal Results}
+\label{sec:principal}
+86\% of studies that provided both data and code were reproducible. Studies that provided data but no code decreased to 33\% reproducibility. The authors were unable to reproduce those without data. Their findings emphasize the importance of open science practices. In particular, the findings suggest that open science practices significantly increase the reliability and subsequent collaborative potential of AI research. As a net effect, results are more robust and generalizable. 
+
+% \pagebreak
+
+% What parts were the clearest? What parts were the least clear?
+\section{Clarity}
+\label{sec:clarity}
+It was clearest why open science in AI research is important. The rationale behind deciding whether a study was reproducible or not was less clear, both at onset and when evaluating results.
+
+% How does the paper relate to others you have read? Provide full bibliographic citations. At least say what kind of papers would have been relevant. If you reference one of their references, say something specific about it
+\section{Relevance}
+\label{sec:relevance}
+This paper relates to Gundersen et al.'s 2022 paper \cite{gundersen2023sourcesirreproducibilitymachinelearning}. In the paper, the authors explore the reasons behind irreproducibility in machine learning research. Data and code documentation are emphasized as major factors in the paper and the results from this paper in 2024 reflect the same conclusion.
+
+% Ask at least three thoughtful questions, now that you have read it. These might be thesis topic ideas, or ways the material relates to other work in problem solving or statistics or computer science with which you are familiar.
+\section{Further Study}
+\label{sec:further}
+How might mandated open science practices affect research in low-resource settings where the infrastructure to share may be limited? How can journals/conferences incentivize openness or discourage closed practices? How do we address papers that are irreproducible?
+
+% Why would you reread this paper, or recommend it to a colleague? This should not be a review.
+\section{Recommendation}
+\label{sec:rec}
+I would recommend this paper especially to those interested in open source because this is an extension of it into the research community, where reproducibility is crucial.
+
+% What impact the methods, data, and/or results will have on the community beyond computer science.
+\section{Social Impact}
+\label{sec:impact}
+AI research is being used in industries beyond computer science, including healthcare. With high-stakes domains like healthcare, ensuring results are reliable before implementation of technology is crucial for livelihoods (and avoidance of lawsuits).
+
+% This can be notation, methods, language, or ideas
+\section{What I looked up}
+\label{sec:looked up}
+Binary classification, logistic regression, hyperparameters, random seeds, GPU cluster.
+
+\bibliography{references}
+
+\end{document}

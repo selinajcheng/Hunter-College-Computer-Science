@@ -1,0 +1,106 @@
+% ----------
+% A LaTeX template for course project reports
+% 
+% This template is modified from "Tech Report ala MIT AI Lab (1981)"
+% 
+% ----------
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin = 1in]{geometry} % sets 1-inch margin on all sides
+
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[runin]{abstract}
+\usepackage{titling}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{helvet}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{blindtext}
+\usepackage{parskip}
+\usepackage{etoolbox}
+
+\usepackage{titlesec}
+\usepackage{cite}
+\bibliographystyle{IEEEtran}
+
+\input{preamble.tex}
+
+% ----------
+% Variables
+% ----------
+
+% Set all headings to sans serif font
+\titleformat{\section}{\fontfamily{lmss}\selectfont\Large\bfseries}{}{}{}[]
+\titleformat{\subsection}{\fontfamily{lmss}\selectfont\large\bfseries}{}{}{}[]
+\titleformat{\subsubsection}{\fontfamily{lmss}\selectfont\normalsize\bfseries}{}{}{}[]
+
+% ----------
+% actual document
+% ----------
+%\linespread{1.0}
+\begin{document}
+\pagestyle{empty}
+\singlespacing
+\vspace{1.0cm}
+
+\newgeometry{} % Redefine geometries (normal margins)
+
+\textbf{CSCI 493.89 Research in AI and ML}: Assignment 5
+
+% full bibliographic reference including title, author, date, venue. 
+\section{Subject}
+\label{sec:subject}
+S. Amarel, "On Representations of Problems of Reasoning about Actions," in \emph{Machine Intelligence 3}, D. Michie, Ed.    American Elsevier Publisher, 1968, pp. 131-171.
+
+% describe the content, including its three most important points.
+\section{Summary}
+\label{sec:summary}
+Amarel explores and discusses the role of problem representation in solving problems of reasoning through the lens of the "Missionaries and Cannibals" (MC) problem. The way a problem is represented directly affects the complexity of the search space and the efficiency of finding solutions. The elimination of non-essential details and leveraging symmetry can simplify this process.
+
+% Identify the author’s underlying thesis in a single sentence.
+\section{Thesis Statement}
+\label{sec:thesis}
+Deliberate problem representation with the most simplified search space is critical for efficient automated reasoning about actions. 
+
+% Identify the principal results of the research. (If it is a survey paper, indicate instead the major points instead.)
+\section{Principal Results}
+\label{sec:principal}
+Amarel's exploration of the MC problem demonstrates that the simplification of problem representation significantly shrinks the search space. Amarel uses a number of methods to do this. Amarel eliminates intermediate states that do not constitute key decisions and reduces the problem state to vector operations. He introduces a reduction system over traditional production systems by reducing the search space to problem states and relevant moves, and leveraging symmetry. 
+
+% \pagebreak
+
+% What parts were the clearest? What parts were the least clear?
+\section{Clarity}
+\label{sec:clarity}
+Amarel clearly and comprehensively covered each of the sequential simplifications of representing the MC problem. I found the graphs and proofs to take more time to understand as it assumes a solid mathematical background.
+
+% How does the paper relate to others you have read? Provide full bibliographic citations. At least say what kind of papers would have been relevant. If you reference one of their references, say something specific about it
+\section{Relevance}
+\label{sec:relevance}
+In this paper, Amarel builds on the work of Simon and Newell, who in their 1961 paper \emph{Computer Simulation of Human Thinking} introduce the idea of using machines to simulate human problem-solving processes \cite{doi:10.1126/science.134.3495.2011}. Amarel extends this by addressing \emph{how} to best represent problems computationally for efficient searching.
+
+% Ask at least three thoughtful questions, now that you have read it. These might be thesis topic ideas, or ways the material relates to other work in problem solving or statistics or computer science with which you are familiar.
+\section{Further Study}
+\label{sec:further}
+Amarel brought up the point that finding a solution with the same problem representation can sometimes be easier for computers than humans, but do the explored principles still hold true for humans? Have we found something similar in the way humans prefer to solve problems? Is it better to replicate how humans solve problems or tailor it to computers? How are real and more complex problems simplified?
+
+% Why would you reread this paper, or recommend it to a colleague? This should not be a review.
+\section{Recommendation}
+\label{sec:rec}
+I would recommend this to anyone learning about or working on autonomous systems, problem solving, and knowledge representation.
+
+% What impact the methods, data, and/or results will have on the community beyond computer science.
+\section{Social Impact}
+\label{sec:impact}
+I see potential parallels between Amarel's exploration of problem representation and human cognition. If true, both topics can learn from each other.
+
+% This can be notation, methods, language, or ideas
+\section{What I looked up}
+\label{sec:looked up}
+The M&C game for a visual explanation and to try it out myself. I also searched up more information for the citation.
+
+\bibliography{references}
+
+\end{document}
